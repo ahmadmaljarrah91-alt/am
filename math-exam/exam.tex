@@ -41,9 +41,10 @@
 
 % إطار الصفحات
 \AddToShipoutPictureBG{%
+  \LTRfig{%
   \begin{tikzpicture}[remember picture, overlay]
     \draw[line width=1.2pt] ([shift={(0.8cm,-0.8cm)}]current page.north west) rectangle ([shift={(-0.8cm,0.8cm)}]current page.south east);
-  \end{tikzpicture}%
+  \end{tikzpicture}}%
 }
 
 % الترويسة
