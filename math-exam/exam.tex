@@ -1,0 +1,247 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[a4paper, top=1.2cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{fontspec}
+\usepackage[bidi=basic]{babel}
+\babelprovide[main, import, onchar=ids fonts]{arabic}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Serif}
+\babelfont[arabic]{rm}{Amiri} % الخط الأميري
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc, angles, quotes}
+\usepackage{eso-pic}
+\usepackage{tcolorbox}
+
+% ------------------------------------------------------------------
+% مهم: الصفحة باتجاه عربي (من اليمين لليسار)، وهذا يعكس أماكن الرموز
+% والزوايا داخل رسومات TikZ. لذلك نضع كل رسمة داخل صندوق إنجليزي (LTR)
+% ------------------------------------------------------------------
+\newcommand{\LTRfig}[1]{\mbox{\foreignlanguage{english}{#1}}}
+
+% قطاع دائري بنفس شكل الكتاب: الرأس على اليسار والقوس على اليمين
+% #1 = قياس الزاوية ، #2 = نصف القطر في الرسم (cm) ، #3 = طول نصف القطر المكتوب
+\newcommand{\sectorfig}[3]{%
+\LTRfig{%
+\begin{tikzpicture}[thick]
+  \pgfmathsetmacro{\s}{-12}          % ميل نصف القطر السفلي
+  \pgfmathsetmacro{\e}{\s + #1}      % اتجاه نصف القطر العلوي
+  \pgfmathsetmacro{\m}{\s + #1/2}    % منتصف الزاوية
+  \draw[violet, fill=violet!4] (0,0) -- (\s:#2)
+        arc[start angle=\s, end angle=\e, radius=#2] -- cycle;
+  \draw[red] (\s:0.25*#2) arc[start angle=\s, end angle=\e, radius=0.25*#2];
+  \node at (\m:0.45*#2) {$#1^\circ$};
+  \node[below=3pt] at (\s:0.5*#2) {$#3$};
+\end{tikzpicture}}}
+
+\begin{document}
+
+% إطار الصفحات
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[line width=1.2pt] ([shift={(0.8cm,-0.8cm)}]current page.north west) rectangle ([shift={(-0.8cm,0.8cm)}]current page.south east);
+  \end{tikzpicture}%
+}
+
+% الترويسة
+\noindent
+\begin{minipage}[t]{0.38\textwidth}
+\vspace{0pt}
+\textbf{المملكة الأردنية الهاشمية} \\
+\textbf{وزارة التربية والتعليم} \\
+\textbf{مدرسة عنبة الثانوية الشاملة للبنات} \\
+\textbf{المبحث: الرياضيات}
+\end{minipage}%
+\begin{minipage}[t]{0.24\textwidth}
+\vspace{0pt}
+\centering
+\includegraphics[width=2.3cm]{logo.png}
+\end{minipage}%
+\begin{minipage}[t]{0.38\textwidth}
+\vspace{0pt}
+\textbf{الصف: العاشر} \\
+\textbf{الشعبة: ( \hspace{1.5cm} )} \\
+\textbf{اليوم والتاريخ: \hspace{0.5cm} / \hspace{0.5cm} / 202 م} \\
+\textbf{الزمن: ساعة واحدة}
+\end{minipage}
+
+\vspace{0.3cm}
+\hrule height 1.2pt
+\vspace{0.08cm}
+\hrule height 0.4pt
+\vspace{0.5cm}
+
+\begin{center}
+\textbf{\Large اختبار الرياضيات}
+\end{center}
+
+\vspace{0.2cm}
+\noindent \textbf{اسم الطالبة:} \rule{10cm}{0.5pt}
+
+\vspace{0.5cm}
+\noindent\textbf{\large السؤال الأول: اختاري رمز الإجابة الصحيحة في كل مما يأتي (18 علامة):}
+\vspace{0.2cm}
+
+\begin{enumerate}[label=\textbf{\arabic*-}, itemsep=0.35cm, leftmargin=*]
+
+\item يمكن حل المعادلة الآتية $x^3 + 4x^2 = 5x$ عن طريق:
+\vspace{0.2cm} \\
+\noindent\begin{tabularx}{\linewidth}{XXXX}
+(A) إخراج عامل مشترك & (B) بالتجميع & (C) مجموع مكعبين & (D) الفرق بين مكعبين
+\end{tabularx}
+
+\item جذور المعادلة $x^3 + 2x^2 - x - 2 = 0$ هي:
+\vspace{0.2cm} \\
+\noindent\begin{tabularx}{\linewidth}{XXXX}
+(A) جذراً واحداً & (B) $-1, 1, 2$ & (C) $-3, -2, 2$ & (D) $-1, 1, -2$
+\end{tabularx}
+
+\item إذا كانت قيمة المميز سالبة فإن عدد حلول النظام هو:
+\vspace{0.2cm} \\
+\noindent\begin{tabularx}{\linewidth}{XXXX}
+(A) حل واحد فقط & (B) لا يوجد حل & (C) حلين للنظام & (D) ثلاث حلول
+\end{tabularx}
+
+\item أي الأزواج المرتبة الآتية يمثل حلاً لنظام المعادلات:
+$\begin{cases} y = x^2 - 5x + 6 \\ y = -x^2 + 2x + 3 \end{cases}$
+\vspace{0.2cm} \\
+\noindent\begin{tabularx}{\linewidth}{XXXX}
+(A) $(3,0)$ & (B) $(0,3)$ & (C) $(0,2)$ & (D) $(2,0)$
+\end{tabularx}
+
+\item القطعة المستقيمة الواصلة بين نقطتين على الدائرة وتمر بالمركز تسمى:
+\vspace{0.2cm} \\
+\noindent\begin{tabularx}{\linewidth}{XXXX}
+(A) القاطع & (B) المماس & (C) القطر & (D) نصف القطر
+\end{tabularx}
+
+\item الوتران اللذان يبعدان المسافة نفسها عن المركز هما وتران:
+\vspace{0.2cm} \\
+\noindent\begin{tabularx}{\linewidth}{XXXX}
+(A) متطابقان & (B) متوازيان & (C) متعامدان & (D) $(B+C)$
+\end{tabularx}
+
+\item قياس الزاوية المركزية يساوي:
+\vspace{0.2cm} \\
+\noindent\begin{tabularx}{\linewidth}{XX}
+(A) نصف قياس الزاوية المحيطية & (B) ربع قياس الزاوية المحيطية \\[0.2cm]
+(C) مثلي قياس الزاوية المحيطية & (D) ثلث قياس الزاوية المحيطية
+\end{tabularx}
+
+\item طول القوس بدلالة ($\pi$) في الشكل الآتي: \hfill \raisebox{-0.9cm}{\sectorfig{25}{4}{8}} \hspace{1.5cm}
+\vspace{0.2cm} \\
+\noindent\begin{tabularx}{\linewidth}{XXXX}
+(A) $\dfrac{40\pi}{9}$ & (B) $\dfrac{10\pi}{9}$ & (C) $3.489$ & (D) $13.956$
+\end{tabularx}
+
+\item العددان اللذان مجموعهما 12 والفرق بين مربعيهما 24 هما:
+\vspace{0.2cm} \\
+\noindent\begin{tabularx}{\linewidth}{XXXX}
+(A) $(-7,-5)$ & (B) $(7,5)$ & (C) $(8,4)$ & (D) $(-8,-4)$
+\end{tabularx}
+
+\end{enumerate}
+
+\newpage
+% بداية الصفحة الثانية
+\noindent\textbf{\large السؤال الثاني: أحلّ نظام المعادلات الآتي، ثم أتحقق من صحة الحل (10 علامات):}
+\vspace{0.3cm}
+\begin{align*}
+y &= x^2 + 6x - 3 \\
+y &= 2x - 3
+\end{align*}
+\vspace{6cm} % مساحة للحل
+
+\hrule height 0.4pt
+\vspace{0.5cm}
+
+\noindent\textbf{\large السؤال الثالث: أجد طول القوس ومساحة القطاع ومحيط القطاع في الشكل المجاور: (10 علامات)}
+% (ملاحظة: نفس شكل سؤال 6 صفحة 44)
+\begin{center}
+\sectorfig{60}{4}{12\text{ cm}}
+\end{center}
+\vspace{2.5cm} % مساحة للحل
+
+\hrule height 0.4pt
+\vspace{0.5cm}
+
+\noindent\textbf{\large السؤال الرابع: مزرعة مستطيلة الشكل محيطها $16\text{ m}$ والفرق بين مربعي بعديها $16\text{ m}^2$. أجد بعديها. (10 علامات)}
+\vspace{7cm}
+
+\newpage
+% بداية الصفحة الثالثة
+\noindent\textbf{\large السؤال الخامس: إذا كانت النقطة $O$ هي مركز الدائرة في الشكل المجاور. فما قياس الزاويتين المشار إليهما بالرمزين ($x$، $y$)؟ (8 علامات)}
+% (ملاحظة: نفس شكل سؤال 1 صفحة 48، الزاوية 30)
+\begin{center}
+\LTRfig{%
+\begin{tikzpicture}[scale=0.9, thick]
+  \coordinate (O) at (0,0);
+  \coordinate (P) at (180:2.5);   % P على يسار الدائرة
+  \coordinate (Q) at (300:2.5);   % Q أسفل اليمين (لأن POQ = 180 - 2*30 = 120)
+  \coordinate (R) at (112:2.5);   % رأس الزاوية المحيطية y أعلى اليسار
+
+  \draw[blue!60!black] (O) circle (2.5cm);
+  \draw[blue!60!black] (P) -- (O) -- (Q) -- cycle;   % نصفا القطر والوتر PQ
+  \draw[blue!60!black] (P) -- (R) -- (Q);            % الزاوية المحيطية
+
+  \fill (O) circle (2pt);
+  \node[above right] at (O) {$O$};
+  \node[left]        at (P) {$P$};
+  \node[below right] at (Q) {$Q$};
+
+  % الزاوية المعطاة عند P
+  \pic [draw, red, angle radius=1.1cm, angle eccentricity=1.45, "\small $30^\circ$"] {angle = Q--P--O};
+  % الزاوية المركزية x عند O
+  \pic [draw, red, angle radius=0.45cm, angle eccentricity=1.7, "$x$"] {angle = P--O--Q};
+  % الزاوية المحيطية y عند R
+  \pic [draw, red, angle radius=0.6cm, angle eccentricity=1.5, "$y$"] {angle = P--R--Q};
+\end{tikzpicture}}
+\end{center}
+\vspace{2.5cm}
+
+\hrule height 0.4pt
+\vspace{0.5cm}
+
+\noindent\textbf{\large السؤال السادس: أسطوانة حجمها $16\pi\text{ cm}^3$، إذا كان طول نصف قطر قاعدة الأسطوانة يقل عن ارتفاعها بـ~$2\text{ cm}$، أجد أبعادها. (4 علامات)}
+% (ملاحظة: على نمط سؤال 20 صفحة 15)
+\begin{center}
+\LTRfig{%
+\begin{tikzpicture}[scale=0.9]
+    % جسم الأسطوانة (تدرج لوني من الفاتح لليسار إلى الداكن لليمين)
+    \shade[left color=cyan!15, right color=teal!45]
+        (-2,0) -- (-2,3) arc (180:360:2 and 0.6) -- (2,0) arc (0:-180:2 and 0.6) -- cycle;
+    % القاعدة العلوية
+    \shade[left color=cyan!25, right color=teal!55] (0,3) ellipse (2 and 0.6);
+    \draw[thick, green!50!black] (0,3) ellipse (2 and 0.6);
+    % القاعدة السفلية: الجزء الخلفي متقطع والأمامي متصل
+    \draw[thick, dashed, green!50!black] (2,0) arc (0:180:2 and 0.6);
+    \draw[thick, green!50!black] (-2,0) arc (180:360:2 and 0.6);
+    % الجانبان
+    \draw[thick, green!50!black] (-2,0) -- (-2,3);
+    \draw[thick, green!50!black] (2,0) -- (2,3);
+    % نصف القطر r
+    \fill (0,0) circle (2pt);
+    \draw[thick, red] (0,0) -- (2,0);
+    \node[below=3pt] at (1,0) {\large $r$};
+    % الارتفاع h
+    \draw[thick] (2.5,0) -- (2.5,3) node[midway, right=2pt] {\large $h$};
+    \draw[thick] (2.3,0) -- (2.7,0);
+    \draw[thick] (2.3,3) -- (2.7,3);
+\end{tikzpicture}}
+\end{center}
+\vspace{3cm}
+
+
+\vspace{1.5cm}
+\begin{center}
+\textbf{\large انتهت الأسئلة} \\
+\vspace{0.3cm}
+\textbf{مع تمنياتي لكنّ بالتوفيق والنجاح} \\
+\vspace{0.3cm}
+\textbf{إعداد المعلمة: صفا العوضي}
+\end{center}
+
+\end{document}
