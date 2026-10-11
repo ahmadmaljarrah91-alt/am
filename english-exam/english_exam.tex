@@ -40,7 +40,7 @@
 \begin{minipage}[t]{0.20\textwidth}
 \vspace{0pt}
 \centering
-\includegraphics[width=2.3cm]{logo.png}
+\IfFileExists{logo.png}{\includegraphics[width=2.3cm]{logo.png}}{} % if logo.png is missing, the header just has no logo
 \end{minipage}%
 \begin{minipage}[t]{0.40\textwidth}
 \vspace{0pt}
