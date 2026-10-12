@@ -199,17 +199,17 @@
 \textbf{2)} \hfill
 \LTRfig{%
 \begin{tikzpicture}[scale=0.45, baseline=(current bounding box.north)]
-  \draw[gray!30, very thin] (-3,-4) grid (7,4);
+  \draw[gray!30, very thin] (-3,-5) grid (7,4);
   \draw[-{Stealth}, thick] (-3.4,0) -- (7.5,0) node[right] {$x$};
-  \draw[-{Stealth}, thick] (0,-4.4) -- (0,4.5) node[above] {$y$};
+  \draw[-{Stealth}, thick] (0,-5.4) -- (0,4.5) node[above] {$y$};
   \foreach \i in {-2,-1,1,2,3,4,5,6} \node[below, font=\tiny, fill=white, inner sep=1pt] at (\i,-0.1) {$\i$};
-  \foreach \i in {-3,-2,-1,1,2,3} \node[right, font=\tiny, fill=white, inner sep=1pt] at (0.05,\i) {$\i$};
-  % y = 5/16 (x-2)^2 - 3 , يبدأ من النقطة (-2, 2)
+  \foreach \i in {-4,-3,-2,-1,1,2,3} \node[right, font=\tiny, fill=white, inner sep=1pt] at (0.05,\i) {$\i$};
+  % y = 3/8 (x-2)^2 - 4 , يبدأ من النقطة (-2, 2) وأدنى نقطة (2, -4)
   \draw[very thick, blue!70!black, -{Stealth}, domain=-2:6.55, samples=80]
-       plot (\x, {5/16*(\x-2)^2 - 3});
+       plot (\x, {3/8*(\x-2)^2 - 4});
   \fill[blue!70!black] (-2,2) circle (4pt);
   \draw[dashed] (-2,2) -- (0,2);
-  \draw[dashed] (2,-3) -- (0,-3);
+  \draw[dashed] (2,-4) -- (0,-4);
 \end{tikzpicture}}
 \end{minipage}
 \vspace{1.4cm} % مساحة إجابة الفرعين (المجال، المدى، النوع)
