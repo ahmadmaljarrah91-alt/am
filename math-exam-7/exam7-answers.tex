@@ -1,0 +1,165 @@
+% يجب الترجمة بمحرك LuaLaTeX  (Menu -> Compiler -> LuaLaTeX)
+% الإجابة النموذجية لاختبار منتصف الفصل الأول - الصف السابع - الرياضيات
+\documentclass[12pt, a4paper]{article}
+\usepackage[a4paper, top=1.2cm, bottom=1.4cm, left=1.4cm, right=1.4cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{fontspec}
+\usepackage[bidi=basic]{babel}
+\babelprovide[main, import, onchar=ids fonts]{arabic}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Serif}
+\babelfont[arabic]{rm}{Amiri}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+\setlength{\parindent}{0pt}
+\newcommand{\LTRfig}[1]{\mbox{\foreignlanguage{english}{#1}}}
+
+% عنوان سؤال داخل شريط رمادي مع العلامة على اليسار
+\newcommand{\question}[2]{%
+  \par\vspace{0.2cm}\noindent
+  \colorbox{gray!15}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\textbf{\large #1}\hfill\mbox{\textbf{(#2)}}}}%
+  \par\vspace{0.1cm}}
+% علامة خطوة الحل
+\newcommand{\m}[1]{\hfill\mbox{\textcolor{blue!60!black}{\textbf{[#1]}}}}
+% الإجابة النهائية داخل إطار
+\newcommand{\ans}[1]{\fbox{\textbf{#1}}}
+% رأس الفرع
+\newcommand{\sub}[1]{\par\vspace{0.12cm}\noindent\textbf{#1)}\ }
+
+\begin{document}
+
+% إطار الصفحات
+\AddToShipoutPictureBG{%
+  \LTRfig{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[line width=1.2pt] ([shift={(0.7cm,-0.7cm)}]current page.north west) rectangle ([shift={(-0.7cm,0.7cm)}]current page.south east);
+  \end{tikzpicture}}%
+}
+
+% ============================ الترويسة ============================
+\noindent
+\begin{minipage}[t]{0.37\textwidth}
+\vspace{0pt}
+\textbf{المملكة الأردنية الهاشمية} \\
+\textbf{وزارة التربية والتعليم} \\
+\textbf{مدرسة عنبة الثانوية الشاملة للبنات} \\
+\textbf{العام الدراسي: 2025 / 2026}
+\end{minipage}%
+\begin{minipage}[t]{0.26\textwidth}
+\vspace{0pt}
+\centering
+\IfFileExists{logo.png}{\includegraphics[width=2.2cm]{logo.png}}{}
+\end{minipage}%
+\begin{minipage}[t]{0.37\textwidth}
+\vspace{0pt}
+\textbf{المبحث: الرياضيات} \\
+\textbf{الصف: السابع} \\
+\textbf{الزمن: حصة واحدة} \\
+\textbf{الدرجة الكلية: 33 علامة}
+\end{minipage}
+
+\vspace{0.2cm}
+\hrule height 1.2pt
+\vspace{0.06cm}
+\hrule height 0.4pt
+\vspace{0.15cm}
+
+\begin{center}
+\textbf{\LARGE الإجابة النموذجية} \\[0.1cm]
+\textbf{\large اختبار منتصف الفصل الأول}
+\end{center}
+\vspace{-0.2cm}
+\noindent{\small الأرقام بين الأقواس المربعة \textcolor{blue!60!black}{\textbf{[ ]}} هي توزيع العلامة على خطوات الحل، والإجابة النهائية داخل إطار.}
+
+% ============================ السؤال الأول ============================
+\question{السؤال الأول: تمثيل الأعداد النسبية بالصورة العشرية والكسرية}{6 علامات}
+
+\sub{أ} $\dfrac{3}{8} = 3 \div 8 = $ \ans{$0.375$} \quad (بالقسمة الطويلة) \m{1 للقسمة + 1 للناتج}
+
+\sub{ب} $0.45 = \dfrac{45}{100} = \dfrac{45 \div 5}{100 \div 5} = $ \ans{$\dfrac{9}{20}$} \m{1 للكسر + 1 للتبسيط}
+
+\sub{ج} $\dfrac{4}{9} = 4 \div 9 = 0.444\ldots = $ \ans{$0.\overline{4}$} \quad (الرقم 4 يتكرر) \m{1 للقسمة + 1 للناتج}
+
+% ============================ السؤال الثاني ============================
+\question{السؤال الثاني: ترتيب الأعداد النسبية ومقارنتها وجمعها}{6 علامات}
+
+\sub{أ} نحوّل الأعداد إلى الصورة العشرية: \m{1}
+\par\quad $-\dfrac{5}{6} \approx -0.833$ \ ، \ $-0.8$ \ ، \ $65\% = 0.65$ \ ، \ $\left|-\dfrac{3}{4}\right| = 0.75$
+\par\quad الترتيب تصاعديًا: \ans{$-\dfrac{5}{6} \ ,\ -0.8 \ ,\ 65\% \ ,\ \left|-\dfrac{3}{4}\right|$} \m{1}
+
+\sub{ب} نوحّد المقامات (المقام المشترك $56$): \quad
+$-\dfrac{5}{8} = -\dfrac{35}{56}$ \ ، \ $-\dfrac{2}{7} = -\dfrac{16}{56}$ \m{1}
+\par\quad بما أن $-35 < -16$ \ فإن \ \ans{$-\dfrac{5}{8} < -\dfrac{2}{7}$} \m{1}
+
+\sub{ج} $-\dfrac{5}{6} + \dfrac{1}{4} = -\dfrac{10}{12} + \dfrac{3}{12}$ \m{1}
+\par\quad $= $ \ans{$-\dfrac{7}{12}$} \m{1}
+
+% ============================ السؤال الثالث ============================
+\question{السؤال الثالث: ضرب الأعداد النسبية وقسمتها}{6 علامات}
+
+\sub{أ} نحوّل العدد الكسري إلى كسر غير فعلي: \quad $-2\dfrac{1}{2} = -\dfrac{5}{2}$ \m{1}
+\par\quad $-\dfrac{5}{2} \times \left(-\dfrac{4}{5}\right) = \dfrac{20}{10}$ \quad (سالب × سالب = موجب) \m{1}
+\par\quad $= $ \ans{$2$} \m{1}
+
+\sub{ب} $-2\dfrac{1}{4} = -\dfrac{9}{4}$ \m{1}
+\par\quad $6 \div \left(-\dfrac{9}{4}\right) = 6 \times \left(-\dfrac{4}{9}\right) = -\dfrac{24}{9}$ \quad (نضرب في المقلوب) \m{1}
+\par\quad $= $ \ans{$-\dfrac{8}{3} = -2\dfrac{2}{3}$} \m{1}
+
+\newpage
+% ============================ السؤال الرابع ============================
+\question{السؤال الرابع: الأسس وترتيب العمليات الحسابية}{6 علامات}
+
+\sub{أ} $\dfrac{1}{2} \times \dfrac{1}{2} \times 3 \times 3 \times 3 = $ \ans{$\left(\dfrac{1}{2}\right)^2 \times 3^3$}
+\m{1 لكل أس صحيح}
+
+\sub{ب} $4^{-2} = \dfrac{1}{4^2}$ \m{1}
+\quad $= $ \ans{$\dfrac{1}{16}$} \m{1}
+
+\sub{ج} $3(4-2)^3 + 8 \div 2^2 = 3(2)^3 + 8 \div 4$ \quad (الأقواس ثم الأسس) \m{1}
+\par\quad $= 3 \times 8 + 2 = 24 + 2 = $ \ans{$26$} \quad (الضرب والقسمة ثم الجمع) \m{1}
+
+% ============================ السؤال الخامس ============================
+\question{السؤال الخامس: الجبر والتفكير العالي}{6 علامات}
+
+\sub{أ} الحدود الجبرية: \ans{$5x \ ,\ -3y \ ,\ 8$} \m{1}
+\par\quad معامل $y$: \ans{$-3$} \qquad الحد الثابت: \ans{$8$} \m{1}
+
+\sub{ب} نبدأ من النهاية ونعكس كل عملية ($11\dfrac{4}{5} = 11.8$): \m{1}
+\par\quad $8.9 + 11.8 = 20.7$ \quad ثم \quad $20.7 - 15 = 5.7$ \quad ثم \quad $5.7 + 6.3 = 12$
+\par\quad الكمية الأصلية من الوقود: \ans{$12\ \mathrm{L}$} \m{1}
+\par\quad {\small التحقق: \ $12 - 6.3 + 15 - 11.8 = 8.9$ \ (صحيح)}
+
+\sub{ج} الترتيب: \ans{$\dfrac{1}{c} < \dfrac{1}{b} < \dfrac{1}{a}$} \m{1}
+\par\quad مثال: \ $a = -4 \ ,\ b = -2 \ ,\ c = -1$ \ فإن \
+$\dfrac{1}{a} = -\dfrac{1}{4} \ ,\ \dfrac{1}{b} = -\dfrac{1}{2} \ ,\ \dfrac{1}{c} = -1$
+\par\quad و \ $-1 < -\dfrac{1}{2} < -\dfrac{1}{4}$ ، أي أن ترتيب المعكوسات الضربية للأعداد السالبة يكون عكس ترتيب الأعداد نفسها. \m{1}
+
+% ============================ السؤال السادس ============================
+\question{السؤال السادس: صح أم خطأ}{3 علامات}
+
+{\small (نصف علامة لكل جملة)}
+\vspace{0.05cm}
+
+\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabularx}{\linewidth}{|c|c|X|}
+\hline
+\textbf{الجملة} & \textbf{الإجابة} & \textbf{التوضيح} \\ \hline
+1 & \textbf{T} & مثل: $0.37 = \dfrac{37}{100}$ \\ \hline
+2 & \textbf{F} & كل عدد عشري دوري هو عدد نسبي، مثل: $0.\overline{3} = \dfrac{1}{3}$ \\ \hline
+3 & \textbf{T} & مثل: $a = -1 \ ,\ b = -3$ \ فإن \ $|a| = 1 < |b| = 3$ \\ \hline
+4 & \textbf{F} & المعكوس الضربي للعدد $-\dfrac{3}{4}$ هو $-\dfrac{4}{3}$ \\ \hline
+5 & \textbf{F} & مثل: $-2 - (-5) = 3$ \ وهو عدد موجب \\ \hline
+6 & \textbf{T} & $2^{-3} = \dfrac{1}{2^3} = \dfrac{1}{8}$ \\ \hline
+\end{tabularx}
+
+\vfill
+\begin{center}
+\textbf{مع تمنياتي لكم بالتوفيق}
+\end{center}
+
+\end{document}

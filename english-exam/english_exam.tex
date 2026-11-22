@@ -1,0 +1,163 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[a4paper, top=1.2cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{gensymb} % for \degree
+
+\setlength{\parindent}{0pt}
+
+% Answer line across the full width
+\newcommand{\ansline}{\par\vspace{0.45cm}\noindent\rule{\linewidth}{0.4pt}\par}
+% Short blank to fill in
+\newcommand{\blank}[1][3cm]{\rule{#1}{0.4pt}}
+% Question heading with points on the right
+\newcommand{\question}[2]{\par\vspace{0.4cm}\noindent\textbf{\large #1}\hfill\textbf{(#2)}\par\vspace{0.2cm}}
+
+\begin{document}
+
+% Page frame
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[line width=1.2pt] ([shift={(0.8cm,-0.8cm)}]current page.north west) rectangle ([shift={(-0.8cm,0.8cm)}]current page.south east);
+  \end{tikzpicture}%
+}
+
+% Header
+\noindent
+\begin{minipage}[t]{0.40\textwidth}
+\vspace{0pt}
+\textbf{The Hashemite Kingdom of Jordan} \\
+\textbf{Ministry of Education} \\
+\textbf{Inba Comprehensive Secondary} \\
+\textbf{School for Girls} \\
+\textbf{Subject: English Language}
+\end{minipage}%
+\begin{minipage}[t]{0.20\textwidth}
+\vspace{0pt}
+\centering
+\IfFileExists{logo.png}{\includegraphics[width=2.3cm]{logo.png}}{} % if logo.png is missing, the header just has no logo
+\end{minipage}%
+\begin{minipage}[t]{0.40\textwidth}
+\vspace{0pt}
+\hfill
+\renewcommand{\arraystretch}{1.0}%
+\begin{tabular}[t]{@{}l@{\hspace{0.3cm}}l@{}}
+\textbf{Grade:}   & \textbf{10th} \\
+\textbf{Section:} & \textbf{( \hspace{1.5cm} )} \\
+\textbf{Date:}    & \textbf{\hspace{0.5cm} / \hspace{0.5cm} / 202\hspace{0.3cm}} \\
+\textbf{Time:}    & \rule{2.6cm}{0.4pt}
+\end{tabular}
+\end{minipage}
+
+\vspace{0.3cm}
+\hrule height 1.2pt
+\vspace{0.08cm}
+\hrule height 0.4pt
+\vspace{0.4cm}
+
+\begin{center}
+\textbf{\Large First Semester 2025/2026 -- First Exam} \\[0.15cm]
+\textbf{\large English Language}
+\end{center}
+
+\vspace{0.1cm}
+\noindent\textbf{Name:} \rule{10cm}{0.5pt}
+
+% ------------------------------------------------------------------
+\question{Q1: Read the paragraph carefully, then answer the questions:}{10 Points}
+
+\begin{center}
+\fbox{\parbox{0.95\linewidth}{\setlength{\parindent}{1.5em}\linespread{1.15}\selectfont
+It's the last day of the school year and, next to the library, a group of young people, well-dressed in their school uniforms, are either looking around nervously or chatting and taking selfies. Exams are finished and everyone is waiting for their results. For them, it is the last day of school because they are not coming back next year. They are already looking for jobs or are excited about starting university after the school holidays.
+
+Before that happens, however, the students want to celebrate the end of the year with their family and friends. Some are organising a gathering, and others are planning a celebration at home with their families. In any case, they can now take a break from their school uniforms and wear something smart. It is important to look good on a day like this. Nobody wants to dress casually or be underdressed.
+
+In the school hall, Fadi, the editor of the school newspaper, is interviewing some school-leavers. Everyone seems happy, but how do they really feel? And how are they celebrating their hard work and success this evening? This is a day they will remember for the rest of their lives.
+}}
+\end{center}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.35cm, leftmargin=*]
+\item Why were the students feeling nervous and waiting around the library?
+\ansline
+
+\item What are the students' plans after the school holidays?
+\ansline
+
+\item How do the students plan to celebrate the end of the year before their school holidays?
+\ansline
+
+\item What does the pronoun ``them'' refer to? \blank[6cm]
+
+\item Find out:
+\vspace{0.3cm}
+
+\noindent\begin{tabularx}{\linewidth}{@{}XX@{}}
+A noun: \blank[4.5cm]        & A verb: \blank[4.5cm] \\[0.5cm]
+A pronoun: \blank[4.5cm]     & A preposition: \blank[4.5cm] \\[0.5cm]
+An adjective: \blank[4.5cm]  & An adverb: \blank[4.5cm]
+\end{tabularx}
+\end{enumerate}
+
+\newpage
+% ------------------------------------------------------------------
+\question{Q2: Choose the correct answer:}{3 Points}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.45cm, leftmargin=*]
+\item Look! The teacher \blank\ on the board right now. \\
+(writes / write / is writing)
+
+\item Water \blank\ at 100\degree C. \\
+(boil / boils / is boiling)
+
+\item My father usually \blank\ to work by car, but today he \blank\ the bus. \\
+(goes -- is taking / is going -- takes / go -- takes)
+\end{enumerate}
+
+\vspace{0.2cm}
+\hrule height 0.4pt
+
+% ------------------------------------------------------------------
+\question{Q3: Correct the verbs in brackets.}{4 Points}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.35cm, leftmargin=*]
+\item Look at those dark clouds! It (rain) \blank[5cm]
+
+\item She always (help) her mother with the housework.
+\ansline
+
+\item Ali (not/play) football on Fridays, he usually (read) books.
+\ansline
+
+\item Be quiet! The baby (sleep) in the next room.
+\ansline
+\end{enumerate}
+
+\vspace{0.2cm}
+\hrule height 0.4pt
+
+% ------------------------------------------------------------------
+\question{Q4: Rewrite and transform the sentences:}{3 Points}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.35cm, leftmargin=*]
+\item They are studying for the English exam now. \hfill (Negative)
+\ansline
+
+\item Muna lives in Amman. \hfill (Question)
+\ansline
+
+\item My brother isn't reading a novel at the moment. \hfill (Affirmative)
+\ansline
+\end{enumerate}
+
+\vspace{1.2cm}
+\begin{center}
+\textbf{\large Best wishes} \\[0.3cm]
+\textbf{Rawan Alomari}
+\end{center}
+
+\end{document}

@@ -1,0 +1,346 @@
+% يجب الترجمة بمحرك LuaLaTeX  (Menu -> Compiler -> LuaLaTeX)
+% اختبار العلوم - الصف الثامن، ويليه الإجابة النموذجية في صفحة جديدة
+\documentclass[12pt, a4paper]{article}
+\usepackage[a4paper, top=1.2cm, bottom=1.4cm, left=1.4cm, right=1.4cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{fontspec}
+\usepackage[bidi=basic]{babel}
+\babelprovide[main, import, onchar=ids fonts]{arabic}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Serif}
+\babelfont[arabic]{rm}{Amiri}
+\usepackage[version=4]{mhchem}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{eso-pic}
+
+\setlength{\parindent}{0pt}
+\newcommand{\LTRfig}[1]{\mbox{\foreignlanguage{english}{#1}}}
+\newcommand{\en}[1]{\foreignlanguage{english}{#1}}
+
+% عنوان سؤال داخل شريط رمادي مع العلامة على اليسار
+\newcommand{\question}[2]{%
+  \par\vspace{0.2cm}\noindent
+  \colorbox{gray!15}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\textbf{\large #1}\hfill\mbox{\textbf{(#2)}}}}%
+  \par\vspace{0.12cm}}
+% سطر منقط يكمل السطر، وسطر منقط كامل
+\newcommand{\fillline}{\leavevmode\xleaders\hbox to 0.35em{\hss.\hss}\hfill\kern0pt}
+\newcommand{\dotline}{\par\vspace{0.2cm}\noindent\fillline\par}
+% فراغ منقط بطول محدد
+\newcommand{\dotsblank}[1][3.2cm]{\makebox[#1]{\xleaders\hbox to 0.35em{\hss.\hss}\hfill}}
+% (للإجابة) علامة الفقرة والإجابة داخل إطار
+\newcommand{\m}[1]{\hfill\mbox{\textcolor{blue!60!black}{\textbf{[#1]}}}}
+\newcommand{\ans}[1]{{\setlength{\fboxsep}{1.5pt}\fbox{\textbf{#1}}}}
+
+% الترويسة (تُستعمل للاختبار وللإجابة النموذجية)
+\newcommand{\header}[1]{%
+\noindent
+\begin{minipage}[t]{0.37\textwidth}
+\vspace{0pt}
+\textbf{المملكة الأردنية الهاشمية} \\
+\textbf{وزارة التربية والتعليم} \\
+\textbf{مدرسة جحفية الشاملة للبنات} \\
+\textbf{العام الدراسي: 2026 / 2027}
+\end{minipage}%
+\begin{minipage}[t]{0.26\textwidth}
+\vspace{0pt}
+\centering
+\IfFileExists{logo.png}{\includegraphics[width=2.7cm]{logo.png}}{}
+\end{minipage}%
+\begin{minipage}[t]{0.37\textwidth}
+\vspace{0pt}
+\textbf{المبحث: العلوم} \\
+\textbf{الصف: الثامن} \\
+\textbf{الزمن:} \rule{2.5cm}{0.4pt} \\
+\textbf{العلامة الكلية: 80 علامة}
+\end{minipage}
+
+\vspace{0.2cm}
+\hrule height 1.2pt
+\vspace{0.06cm}
+\hrule height 0.4pt
+\vspace{0.12cm}
+
+\begin{center}
+\textbf{\LARGE #1}
+\end{center}
+\vspace{-0.2cm}}
+
+\begin{document}
+
+% إطار الصفحات
+\AddToShipoutPictureBG{%
+  \LTRfig{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[line width=1.2pt] ([shift={(0.7cm,-0.7cm)}]current page.north west) rectangle ([shift={(-0.7cm,0.7cm)}]current page.south east);
+  \end{tikzpicture}}%
+}
+
+% ####################################################################
+% ############################ الاختبار ##############################
+% ####################################################################
+\header{اختبار مادة العلوم}
+
+% بيانات الطالبة
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+\vspace{0.15cm}
+\textbf{اسم الطالبة:} \rule{6.2cm}{0.4pt} \hfill
+\textbf{الشعبة:} \rule{2cm}{0.4pt} \hfill
+\textbf{التاريخ:} \rule{0.9cm}{0.4pt} / \rule{0.9cm}{0.4pt} / \LTRfig{202\rule{0.6cm}{0.4pt}}
+\vspace{0.1cm}}}
+
+\vspace{0.12cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|>{\bfseries}c|*{6}{>{\centering\arraybackslash}p{1.35cm}|}>{\centering\arraybackslash}p{1.5cm}|}
+\hline
+السؤال & الأول & الثاني & الثالث & الرابع & الخامس & السادس & المجموع \\ \hline
+العلامة & 30 & 6 & 24 & 10 & 4 & 6 & \textbf{80} \\ \hline
+علامة الطالبة & & & & & & & \\ \hline
+\end{tabular}
+\end{center}
+\vspace{-0.2cm}
+\noindent\textbf{تعليمات:} أجيبي عن جميع الأسئلة الآتية.
+
+% ============================ السؤال الأول ============================
+\question{السؤال الأول: أكملي الفراغ بما يناسبه}{30 علامة}
+
+\begin{enumerate}[label=\textbf{\arabic*-}, itemsep=0.42cm, leftmargin=*]
+\item يُقصد بتلوث المياه: \fillline \dotline
+\item دور العمليات الجيولوجية في تشكيل الموارد المعدنية: \par\vspace{0.2cm}
+\textbf{1)} \fillline \quad \textbf{2)} \fillline
+\item تتحرك الصفائح التكتونية بالنسبة إلى بعضها، وبناءً على ذلك تتكون ثلاثة أنواع من الحدود هي: \par\vspace{0.2cm}
+\textbf{1)} \fillline \quad \textbf{2)} \fillline \quad \textbf{3)} \fillline
+\item تتكون النيوكليوتيدات من: \par\vspace{0.2cm}
+\textbf{1)} \fillline \quad \textbf{2)} \fillline \quad \textbf{3)} \fillline
+\item ترتبط القاعدة \en{(G)} مع القاعدة \en{(C)} بـ \dotsblank\ روابط هيدروجينية.
+\item يحدث الانقسام المتساوي في الخلايا \fillline
+\item بينما يحدث الانقسام المنصف في الخلايا \fillline
+\item يمر الانقسام المتساوي بأطوار عدة، منها: \par\vspace{0.2cm}
+\textbf{1)} \fillline \quad \textbf{2)} \fillline \quad \textbf{3)} \fillline
+\end{enumerate}
+
+\newpage
+% ============================ السؤال الثاني ============================
+\question{السؤال الثاني: الوراثة}{6 علامات}
+
+لقّح مندل نباتَي بازيلاء، أحدهما طويل الساق غير متماثل الأليلات، والآخر طويل الساق غير متماثل الأليلات.
+اكتبي الطرز الجينية والشكلية للأبناء باستخدام مربع بانيت، علمًا بأن صفة طول الساق سائدة.
+
+\vspace{0.2cm}
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\vspace{0pt}
+رمز الأليل السائد: \dotsblank[2cm] \qquad رمز الأليل المتنحي: \dotsblank[2cm]
+\par\vspace{0.45cm}
+الطرز الجينية للأبوين: \dotsblank[4.5cm]
+\par\vspace{0.45cm}
+الطرز الجينية للأبناء: \fillline
+\par\vspace{0.45cm}
+الطرز الشكلية للأبناء: \fillline
+\par\vspace{0.45cm}
+النسبة: \fillline
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.4\linewidth}
+\vspace{0pt}
+\centering
+\LTRfig{%
+\begin{tikzpicture}
+  \draw[thick] (0,0) grid[step=1.4] (4.2,-4.2);
+  \fill[gray!15] (0,0) rectangle (1.4,-1.4);
+  \draw[thick] (0,0) grid[step=1.4] (4.2,-4.2);
+  \node[font=\small] at (2.8,0.35) {\foreignlanguage{arabic}{جاميتات الأب}};
+  \node[font=\small, rotate=90] at (-0.35,-2.8) {\foreignlanguage{arabic}{جاميتات الأم}};
+\end{tikzpicture}}
+\end{minipage}
+
+% ============================ السؤال الثالث ============================
+\question{السؤال الثالث: لديك العناصر الآتية}{24 علامة}
+
+\begin{center}
+\LTRfig{\Large\textbf{\ce{_{32}Ge} \qquad\quad \ce{_{19}K} \qquad\quad \ce{_{7}N}}}
+\end{center}
+\vspace{-0.15cm}
+
+\textbf{(أ)} حددي لكل عنصر ما يلي، بإكمال الجدول:
+\par\vspace{0.15cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|c|>{\centering\arraybackslash}p{1.9cm}|>{\centering\arraybackslash}p{1.9cm}|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.4cm}|>{\centering\arraybackslash}p{2.4cm}|}
+\hline
+\textbf{العنصر} & \textbf{1- الدورة} & \textbf{2- المجموعة} & \textbf{3- عدد إلكترونات التكافؤ} & \textbf{4- عدد مستويات الطاقة} & \textbf{5- الأيون المتوقع} \\ \hline
+\en{\ce{_{32}Ge}} & & & & & \\ \hline
+\en{\ce{_{19}K}} & & & & & \\ \hline
+\en{\ce{_{7}N}} & & & & & \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{6-} اسم المجموعة التي تكتمل فيها مستويات الطاقة الخارجية: \fillline
+\par\vspace{0.3cm}
+\textbf{7-} أي هذه العناصر ينتمي إلى الفلزات؟ \fillline
+\par\vspace{0.35cm}
+\textbf{(ب)} حددي عدد كل من: النيوترونات \en{$n^{0}$} ، والبروتونات \en{$p^{+}$} ، والإلكترونات \en{$e^{-}$} لذرة عددها الكتلي \en{(32)} وعددها الذري \en{(15)}.
+\par\vspace{0.35cm}
+\en{$p^{+}$} = \dotsblank \qquad\quad \en{$e^{-}$} = \dotsblank \qquad\quad \en{$n^{0}$} = \dotsblank
+
+\newpage
+% ============================ السؤال الرابع ============================
+\question{السؤال الرابع: وضّحي المقصود بكل مما يأتي}{10 علامات}
+
+\begin{enumerate}[label=\textbf{\arabic*)}, itemsep=0.2cm, leftmargin=*]
+\item الضغط: \fillline \dotline
+\item قاعدة باسكال: \fillline \dotline
+\item مبدأ برنولي: \fillline \dotline
+\item قوة الطفو: \fillline \dotline
+\item قاعدة أرخميدس: \fillline \dotline
+\end{enumerate}
+
+% ============================ السؤال الخامس ============================
+\question{السؤال الخامس: الرافعة الهيدروليكية}{4 علامات}
+
+في رافعة هيدروليكية، كانت مساحة سطح المكبس الصغير \en{$0.4\ \mathrm{m^2}$}، ومساحة سطح المكبس الكبير \en{$1.6\ \mathrm{m^2}$}.
+فما مقدار القوة اللازم التأثير بها في المكبس الصغير لرفع سيارة وزنها \en{$24000\ \mathrm{N}$}؟
+\vspace{3.8cm}
+
+% ============================ السؤال السادس ============================
+\question{السؤال السادس: اشرحي بالرسم العلاقة بين قوة الطفو والوزن}{6 علامات}
+
+\vspace{0.1cm}
+\noindent\fbox{\parbox[t][6.3cm][t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\small مساحة الرسم:}}
+
+\vfill
+\noindent\textbf{\large مع دعائي لكنّ بالنجاح} \hfill \textbf{\large المعلمة: دينا الشرمان}
+
+% ####################################################################
+% ######################## الإجابة النموذجية #########################
+% ####################################################################
+\newpage
+\header{الإجابة النموذجية لاختبار العلوم}
+\noindent{\small الأرقام بين الأقواس المربعة \textcolor{blue!60!black}{\textbf{[ ]}} هي علامة كل فقرة. تُقبل الإجابات الصحيحة الأخرى المكافئة.}
+
+% ============================ السؤال الأول ============================
+\question{السؤال الأول: أكملي الفراغ بما يناسبه}{30 علامة: علامتان لكل فراغ}
+
+\begin{enumerate}[label=\textbf{\arabic*-}, itemsep=0.08cm, leftmargin=*]
+\item تلوث المياه: \ans{أي تغيّر في خصائص الماء الفيزيائية أو الكيميائية أو الحيوية يجعله ضارًّا بالكائنات الحية أو غير صالح للاستخدام.} \m{2}
+\item دور العمليات الجيولوجية في تشكيل الموارد المعدنية: \m{4}
+\par \textbf{1)} \ans{تبلور الصهارة وتبرّدها (العمليات النارية) فتتكوّن المعادن وتتركّز.}
+\par \textbf{2)} \ans{التجوية والتعرية والترسيب (العمليات الرسوبية) فتتجمّع المعادن في رواسب.}
+\item أنواع حدود الصفائح: \ans{حدود متباعدة} ، \ans{حدود متقاربة} ، \ans{حدود تحويلية (انزلاقية)} \m{6}
+\item تتكون النيوكليوتيدات من: \ans{مجموعة فوسفات} ، \ans{سكر خماسي (رايبوز منقوص الأكسجين)} ، \ans{قاعدة نيتروجينية} \m{6}
+\item ترتبط القاعدة \en{(G)} مع \en{(C)} بـ \ans{ثلاث} روابط هيدروجينية. \m{2}
+\item يحدث الانقسام المتساوي في الخلايا \ans{الجسمية} \m{2}
+\item يحدث الانقسام المنصف في الخلايا \ans{الجنسية (التي تكوّن الجاميتات في المناسل)} \m{2}
+\item من أطوار الانقسام المتساوي (أي ثلاثة): \ans{التمهيدي} ، \ans{الاستوائي} ، \ans{الانفصالي} ، \ans{النهائي} \m{6}
+\end{enumerate}
+
+% ============================ السؤال الثاني ============================
+\question{السؤال الثاني: الوراثة}{6 علامات}
+
+\noindent
+\begin{minipage}[t]{0.58\linewidth}
+\vspace{0pt}
+الأليل السائد (طويل): \ans{\en{T}} \quad الأليل المتنحي (قصير): \ans{\en{t}}
+\par\vspace{0.12cm}
+الطرز الجينية للأبوين: \ans{\en{Tt $\times$ Tt}} \m{1}
+\par\vspace{0.12cm}
+الجاميتات: \en{T} ، \en{t} من كل أب \m{1}
+\par\vspace{0.12cm}
+الطرز الجينية للأبناء: \ans{\en{TT}} \ ، \ \ans{\en{Tt}} \ ، \ \ans{\en{tt}} \ بنسبة \ans{\en{1 : 2 : 1}} \m{2}
+\par\vspace{0.12cm}
+الطرز الشكلية: \ans{طويل الساق : قصير الساق} بنسبة \ans{\en{3 : 1}} \m{2}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.35\linewidth}
+\vspace{0pt}
+\centering
+\LTRfig{%
+\begin{tikzpicture}[scale=0.85]
+  \fill[gray!15] (0,0) rectangle (1.4,-1.4);
+  \draw[thick] (0,0) grid[step=1.4] (4.2,-4.2);
+  \node[font=\Large\bfseries] at (2.1,-0.7) {T};
+  \node[font=\Large\bfseries] at (3.5,-0.7) {t};
+  \node[font=\Large\bfseries] at (0.7,-2.1) {T};
+  \node[font=\Large\bfseries] at (0.7,-3.5) {t};
+  \node[font=\large] at (2.1,-2.1) {TT};
+  \node[font=\large] at (3.5,-2.1) {Tt};
+  \node[font=\large] at (2.1,-3.5) {Tt};
+  \node[font=\large] at (3.5,-3.5) {tt};
+\end{tikzpicture}}
+\end{minipage}
+
+% ============================ السؤال الثالث ============================
+\question{السؤال الثالث: العناصر}{24 علامة}
+
+\textbf{(أ)} {\small التوزيع الإلكتروني: \en{\ce{Ge}}: 2، 8، 18، 4 \quad \en{\ce{K}}: 2، 8، 8، 1 \quad \en{\ce{N}}: 2، 5} \m{15: علامة لكل خانة}
+\begin{center}
+\vspace{-0.2cm}
+\renewcommand{\arraystretch}{1.45}
+\begin{tabular}{|c|>{\centering\arraybackslash}p{1.9cm}|>{\centering\arraybackslash}p{2.1cm}|>{\centering\arraybackslash}p{2.3cm}|>{\centering\arraybackslash}p{2.3cm}|>{\centering\arraybackslash}p{2.4cm}|}
+\hline
+\textbf{العنصر} & \textbf{الدورة} & \textbf{المجموعة} & \textbf{إلكترونات التكافؤ} & \textbf{مستويات الطاقة} & \textbf{الأيون المتوقع} \\ \hline
+\en{\ce{_{32}Ge}} & الرابعة & \en{4A} (14) & 4 & 4 & \small لا يكوّن أيونًا بسهولة* \\ \hline
+\en{\ce{_{19}K}} & الرابعة & \en{1A} (1) & 1 & 4 & \en{\ce{K+}} \\ \hline
+\en{\ce{_{7}N}} & الثانية & \en{5A} (15) & 5 & 2 & \en{\ce{N^{3-}}} \\ \hline
+\end{tabular}
+\end{center}
+\vspace{-0.25cm}
+{\footnotesize * الجرمانيوم شبه فلز في المجموعة الرابعة، ويميل إلى المشاركة بالإلكترونات لا إلى تكوين أيون.}
+
+\textbf{6-} \ans{الغازات النبيلة} (المجموعة الثامنة \en{8A}) \m{2}
+\quad
+\textbf{7-} العنصر الفلزي: \ans{\en{\ce{K}}} \m{1}
+
+\textbf{(ب)} \en{$p^{+}$} = العدد الذري = \ans{15} \quad
+\en{$e^{-}$} = \en{$p^{+}$} = \ans{15} \quad
+\en{$n^{0}$} = العدد الكتلي $-$ العدد الذري = \en{$32 - 15$} = \ans{17} \m{6: علامتان لكل عدد}
+
+% ============================ السؤال الرابع ============================
+\question{السؤال الرابع: وضّحي المقصود بكل مما يأتي}{10 علامات: علامتان لكل تعريف}
+
+\begin{enumerate}[label=\textbf{\arabic*)}, itemsep=0.06cm, leftmargin=*]
+\item \textbf{الضغط:} القوة العمودية المؤثرة في وحدة المساحة \ (\en{$P = \dfrac{F}{A}$}).
+\item \textbf{قاعدة باسكال:} الضغط المؤثر في سائل محصور ينتقل بالتساوي إلى جميع أجزاء السائل وإلى جدران الوعاء الذي يحتويه.
+\item \textbf{مبدأ برنولي:} يقل ضغط المائع (السائل أو الغاز) كلما زادت سرعة جريانه.
+\item \textbf{قوة الطفو:} القوة التي يؤثر بها المائع في الجسم المغمور فيه كليًّا أو جزئيًّا، واتجاهها إلى أعلى.
+\item \textbf{قاعدة أرخميدس:} قوة الطفو المؤثرة في جسم مغمور في مائع تساوي وزن المائع الذي يزيحه الجسم.
+\end{enumerate}
+
+% ============================ السؤال الخامس ============================
+\question{السؤال الخامس: الرافعة الهيدروليكية}{4 علامات}
+
+حسب قاعدة باسكال: \quad
+\LTRfig{$\dfrac{F_1}{A_1} = \dfrac{F_2}{A_2} \;\Rightarrow\; F_1 = \dfrac{F_2 \times A_1}{A_2} = \dfrac{24000 \times 0.4}{1.6}$} \m{2}
+\par\vspace{0.1cm}
+\quad القوة اللازمة: \ans{\en{$F_1 = 6000\ \mathrm{N}$}} \m{2}
+
+% ============================ السؤال السادس ============================
+\question{السؤال السادس: العلاقة بين قوة الطفو والوزن}{6 علامات: علامتان لكل حالة}
+
+\begin{center}
+\LTRfig{%
+\begin{tikzpicture}[scale=0.85, >={Stealth[length=2.5mm]}]
+  \foreach \x/\fb/\w/\lab/\cap in {0/1.3/0.6/{F_B > W}/{يرتفع (يطفو)}, 5/0.9/0.9/{F_B = W}/{يبقى معلقًا}, 10/0.6/0.9/{F_B < W}/{يغوص (ينزل)}} {
+    \fill[blue!12] (\x,0) rectangle (\x+3.4,2.6);
+    \draw[thick] (\x,3) -- (\x,0) -- (\x+3.4,0) -- (\x+3.4,3);
+    \fill[orange!60] (\x+1.2,1.0) rectangle (\x+2.2,1.7);
+    \draw (\x+1.2,1.0) rectangle (\x+2.2,1.7);
+    \draw[->, very thick, green!50!black] (\x+1.7,1.7) -- (\x+1.7,1.7+\fb) node[right, font=\small] {$F_B$};
+    \draw[->, very thick, red!70!black] (\x+1.7,1.0) -- (\x+1.7,1.0-\w) node[right, font=\small] {$W$};
+    \node[font=\small] at (\x+1.7,-0.45) {$\lab$};
+    \node[font=\small] at (\x+1.7,-0.95) {\foreignlanguage{arabic}{\cap}};
+  }
+\end{tikzpicture}}
+\end{center}
+\vspace{-0.15cm}
+{\small \en{$F_B$}: قوة الطفو إلى أعلى، \en{$W$}: وزن الجسم إلى أسفل. إذا كانت قوة الطفو أكبر من الوزن يطفو الجسم، وإذا تساوتا يبقى معلقًا في المائع، وإذا كانت أصغر من الوزن يغوص.}
+
+\vfill
+\noindent\textbf{مع دعائي لكنّ بالنجاح} \hfill \textbf{المعلمة: دينا الشرمان}
+
+\end{document}

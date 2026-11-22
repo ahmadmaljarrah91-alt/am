@@ -1,0 +1,274 @@
+% يجب الترجمة بمحرك LuaLaTeX  (Menu -> Compiler -> LuaLaTeX)
+% اختبار الكيمياء - الصف العاشر، ويليه الإجابة النموذجية في صفحة جديدة
+\documentclass[12pt, a4paper]{article}
+\usepackage[a4paper, top=1.2cm, bottom=1.4cm, left=1.4cm, right=1.4cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{fontspec}
+\usepackage[bidi=basic, layout=tabular]{babel}
+\babelprovide[main, import, onchar=ids fonts]{arabic}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Serif}
+\babelfont[arabic]{rm}{Amiri}
+\usepackage[version=4]{mhchem}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+\setlength{\parindent}{0pt}
+\newcommand{\LTRfig}[1]{\mbox{\foreignlanguage{english}{#1}}}
+\newcommand{\en}[1]{\foreignlanguage{english}{#1}}
+
+% عنوان سؤال داخل شريط رمادي مع العلامة على اليسار
+\newcommand{\question}[2]{%
+  \par\vspace{0.2cm}\noindent
+  \colorbox{gray!15}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\textbf{\large #1}\hfill\mbox{\textbf{(#2)}}}}%
+  \par\vspace{0.12cm}}
+% سطر منقط يكمل السطر، وسطر منقط كامل
+\newcommand{\fillline}{\leavevmode\xleaders\hbox to 0.35em{\hss.\hss}\hfill\kern0pt}
+\newcommand{\dotline}{\par\vspace{0.2cm}\noindent\fillline\par}
+% خيارات الاختيار من متعدد (ثلاثة خيارات)
+\newcommand{\choices}[3]{\par\vspace{0.05cm}\noindent
+  \begin{tabularx}{\linewidth}{@{\hspace{0.6cm}}XXX@{}}أ) #1 & ب) #2 & جـ) #3\end{tabularx}}
+% (للإجابة) علامة الفقرة والإجابة داخل إطار
+\newcommand{\m}[1]{\hfill\mbox{\textcolor{blue!60!black}{\textbf{[#1]}}}}
+\newcommand{\ans}[1]{{\setlength{\fboxsep}{1.5pt}\fbox{\textbf{#1}}}}
+
+% الترويسة (تُستعمل للاختبار وللإجابة النموذجية)
+\newcommand{\header}[1]{%
+\noindent
+\begin{minipage}[t]{0.37\textwidth}
+\vspace{0pt}
+\textbf{المملكة الأردنية الهاشمية} \\
+\textbf{وزارة التربية والتعليم} \\
+\textbf{مدرسة جحفية الشاملة للبنات} \\
+\textbf{العام الدراسي: 2026 / 2027}
+\end{minipage}%
+\begin{minipage}[t]{0.26\textwidth}
+\vspace{0pt}
+\centering
+\IfFileExists{logo.png}{\includegraphics[width=2.7cm]{logo.png}}{}
+\end{minipage}%
+\begin{minipage}[t]{0.37\textwidth}
+\vspace{0pt}
+\textbf{المبحث: الكيمياء} \\
+\textbf{الصف: العاشر} \\
+\textbf{الزمن:} \rule{2.5cm}{0.4pt} \\
+\textbf{العلامة الكلية: 40 علامة}
+\end{minipage}
+
+\vspace{0.2cm}
+\hrule height 1.2pt
+\vspace{0.06cm}
+\hrule height 0.4pt
+\vspace{0.12cm}
+
+\begin{center}
+\textbf{\LARGE #1}
+\end{center}
+\vspace{-0.2cm}}
+
+% معادلة طاقة التأين في الفقرة 5
+\newcommand{\ionEq}{\LTRfig{\ce{Mg} \ + \ \foreignlanguage{arabic}{طاقة} \ \ce{-> Mg^{2+} + 2e-}}}
+
+\begin{document}
+
+% إطار الصفحات
+\AddToShipoutPictureBG{%
+  \LTRfig{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[line width=1.2pt] ([shift={(0.7cm,-0.7cm)}]current page.north west) rectangle ([shift={(-0.7cm,0.7cm)}]current page.south east);
+  \end{tikzpicture}}%
+}
+
+% ####################################################################
+% ############################ الاختبار ##############################
+% ####################################################################
+\header{اختبار مادة الكيمياء}
+
+% بيانات الطالبة
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+\vspace{0.15cm}
+\textbf{اسم الطالبة:} \rule{6.2cm}{0.4pt} \hfill
+\textbf{الشعبة:} \rule{2cm}{0.4pt} \hfill
+\textbf{التاريخ:} \rule{0.9cm}{0.4pt} / \rule{0.9cm}{0.4pt} / \LTRfig{202\rule{0.6cm}{0.4pt}}
+\vspace{0.1cm}}}
+
+\vspace{0.12cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|>{\bfseries}c|*{4}{>{\centering\arraybackslash}p{1.7cm}|}>{\centering\arraybackslash}p{1.7cm}|}
+\hline
+السؤال & الأول & الثاني & الثالث & الرابع & المجموع \\ \hline
+العلامة & 15 & 10 & 10 & 5 & \textbf{40} \\ \hline
+علامة الطالبة & & & & & \\ \hline
+\end{tabular}
+\end{center}
+\vspace{-0.2cm}
+\noindent\textbf{تعليمات:} أجيبي عن جميع الأسئلة الآتية.
+
+% ============================ السؤال الأول ============================
+\question{السؤال الأول: ضعي دائرة حول رمز الإجابة الصحيحة}{15 علامة}
+
+\begin{enumerate}[label=\textbf{\arabic*-}, itemsep=0.2cm, leftmargin=*]
+\item الخاصية المرتبطة بعدد الكم الفرعي \en{($l$)} هي:
+\choices{الشكل العام للفلك}{معدل البعد عن النواة}{اتجاه الغزل}
+\item يُعدّ العنصر انتقاليًا داخليًا إذا انتهى توزيعه الإلكتروني بالفلك:
+\choices{\en{s}}{\en{p}}{\en{f}}
+\item الذي يحدد الاتجاه الفراغي للفلك هو عدد الكم:
+\choices{الرئيسي}{الفرعي}{المغناطيسي}
+\item عدد الأفلاك الكلي في المستوى الرئيسي الثالث \en{($n = 3$)} هو:
+\choices{3 أفلاك}{9 أفلاك}{18 فلكًا}
+\item تشير المعادلة الآتية إلى: \qquad \ionEq
+\choices{طاقة التأين للمغنيسيوم}{الألفة الإلكترونية للمغنيسيوم}{الكهروسلبية للمغنيسيوم}
+\item واحدة من الصيغ الآتية تحتوي رابطة تساهمية ثلاثية:
+\choices{\en{\ce{N2}}}{\en{\ce{H2}}}{\en{\ce{O2}}}
+\item نوع الرابطة بين ذرات عنصر الصوديوم \en{\ce{Na}}:
+\choices{فلزية}{أيونية}{تساهمية}
+\item نوع الرابطة في مركب كلوريد البوتاسيوم \en{\ce{KCl}}:
+\choices{أيونية}{فلزية}{تساهمية}
+\item إحدى الآتية ليست من خصائص المركبات الأيونية:
+\choices{موصلة للكهرباء وهي محلول}{متطايرة}{ذائبيتها عالية في الماء}
+\item الرابطة في جزيء \en{\ce{CH4}} هي:
+\choices{تساهمية}{فلزية}{أيونية}
+\end{enumerate}
+
+% ============================ السؤال الثاني ============================
+\question{السؤال الثاني: اكتبي الصيغ الكيميائية لكل مما يأتي}{10 علامات}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.75}
+\begin{tabular}{|>{\bfseries}c|*{5}{>{\centering\arraybackslash}p{2.55cm}|}}
+\hline
+المركب & أ- هيدروكسيد الكالسيوم & ب- كبريتات الصوديوم & جـ- نتريد المغنيسيوم & د- فوسفات الألمنيوم & هـ- بيرمنغنات البوتاسيوم \\ \hline
+الصيغة & & & & & \\ \hline
+\end{tabular}
+\end{center}
+
+% ============================ السؤال الثالث ============================
+\question{السؤال الثالث: التوزيع الإلكتروني}{10 علامات}
+
+اكتبي التوزيع الإلكتروني لكل من:
+\par\vspace{0.35cm}
+\LTRfig{\large\textbf{\ce{_{32}Ge}}} : \fillline
+\par\vspace{0.55cm}
+\LTRfig{\large\textbf{\ce{_{17}Cl}}} : \fillline
+\par\vspace{0.4cm}
+ثم أجيبي عما يأتي:
+\par\vspace{0.15cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.9}
+\begin{tabular}{|c|>{\centering\arraybackslash}p{3.2cm}|>{\centering\arraybackslash}p{3.2cm}|>{\centering\arraybackslash}p{4.2cm}|}
+\hline
+\textbf{العنصر} & \textbf{1) رقم الدورة} & \textbf{1) رقم المجموعة} & \textbf{2) عدد الإلكترونات المنفردة} \\ \hline
+\en{\ce{_{32}Ge}} & & & \\ \hline
+\en{\ce{_{17}Cl}} & & & \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{3)} الذرة الأكبر حجمًا بين \en{\ce{Cl}} و \en{\ce{Ge}} هي: \rule{2.5cm}{0.4pt} \ ، والسبب: \fillline \dotline
+\par\vspace{0.3cm}
+\textbf{4)} اكتبي التوزيع الإلكتروني للأيون \en{\ce{_{12}Mg^{2+}}}: \fillline
+
+% ============================ السؤال الرابع ============================
+\question{السؤال الرابع: قارني بين المركبات الأيونية والمركبات التساهمية}{5 علامات}
+
+\begin{center}
+\renewcommand{\arraystretch}{2.1}
+\begin{tabular}{|>{\bfseries}p{4.6cm}|>{\centering\arraybackslash}p{5.6cm}|>{\centering\arraybackslash}p{5.6cm}|}
+\hline
+وجه المقارنة & \textbf{المركبات الأيونية} & \textbf{المركبات التساهمية} \\ \hline
+درجات الانصهار والغليان & & \\ \hline
+الذائبية في الماء & & \\ \hline
+التوصيل للكهرباء في حالة المحلول & & \\ \hline
+\end{tabular}
+\end{center}
+
+\vfill
+\noindent\textbf{\large مع دعائي لكنّ بالنجاح} \hfill \textbf{\large المعلمة: دينا الشرمان}
+
+% ####################################################################
+% ######################## الإجابة النموذجية #########################
+% ####################################################################
+\newpage
+\header{الإجابة النموذجية لاختبار الكيمياء}
+\noindent{\small الأرقام بين الأقواس المربعة \textcolor{blue!60!black}{\textbf{[ ]}} هي علامة كل فقرة. تُقبل الإجابات الصحيحة الأخرى المكافئة.}
+
+% ============================ السؤال الأول ============================
+\question{السؤال الأول: الاختيار من متعدد}{15 علامة: علامة ونصف لكل فقرة}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{|c|c|p{11.5cm}|}
+\hline
+\textbf{الفقرة} & \textbf{الإجابة} & \textbf{التوضيح} \\ \hline
+1 & \textbf{أ} & الشكل العام للفلك (عدد الكم الفرعي يحدد نوع الفلك \en{s, p, d, f}). \\ \hline
+2 & \textbf{جـ} & \en{f}، فالعناصر الانتقالية الداخلية (اللانثانيدات والأكتينيدات) ينتهي توزيعها بالفلك \en{f}. \\ \hline
+3 & \textbf{جـ} & عدد الكم المغناطيسي يحدد الاتجاه الفراغي للفلك. \\ \hline
+4 & \textbf{ب} & 9 أفلاك، لأن عدد الأفلاك $= n^2 = 3^2 = 9$. \\ \hline
+5 & \textbf{أ} & طاقة التأين للمغنيسيوم (مجموع طاقتي التأين الأولى والثانية)، لأن الذرة تفقد إلكترونات بامتصاص طاقة. \\ \hline
+6 & \textbf{أ} & \en{\ce{N2}}، فبين ذرتي النيتروجين رابطة ثلاثية \en{\ce{N#N}}. \\ \hline
+7 & \textbf{أ} & فلزية، لأن الصوديوم فلز. \\ \hline
+8 & \textbf{أ} & أيونية، بين فلز (\en{\ce{K}}) ولا فلز (\en{\ce{Cl}}). \\ \hline
+9 & \textbf{ب} & متطايرة، فالمركبات الأيونية غير متطايرة لأن درجات غليانها مرتفعة. \\ \hline
+10 & \textbf{أ} & تساهمية، بين لا فلزين (\en{\ce{C}} و \en{\ce{H}}). \\ \hline
+\end{tabular}
+\end{center}
+
+% ============================ السؤال الثاني ============================
+\question{السؤال الثاني: الصيغ الكيميائية}{10 علامات: علامتان لكل صيغة}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{|>{\bfseries}c|*{5}{>{\centering\arraybackslash}p{2.55cm}|}}
+\hline
+المركب & أ- هيدروكسيد الكالسيوم & ب- كبريتات الصوديوم & جـ- نتريد المغنيسيوم & د- فوسفات الألمنيوم & هـ- بيرمنغنات البوتاسيوم \\ \hline
+الصيغة & \en{\large\ce{Ca(OH)2}} & \en{\large\ce{Na2SO4}} & \en{\large\ce{Mg3N2}} & \en{\large\ce{AlPO4}} & \en{\large\ce{KMnO4}} \\ \hline
+\end{tabular}
+\end{center}
+
+% ============================ السؤال الثالث ============================
+\question{السؤال الثالث: التوزيع الإلكتروني}{10 علامات}
+
+\LTRfig{\textbf{\ce{_{32}Ge}}} : \LTRfig{$1s^2\,2s^2\,2p^6\,3s^2\,3p^6\,4s^2\,3d^{10}\,4p^2$} \ \ أو \ \LTRfig{$[\mathrm{Ar}]\,4s^2\,3d^{10}\,4p^2$} \m{2}
+\par\vspace{0.1cm}
+\LTRfig{\textbf{\ce{_{17}Cl}}} : \LTRfig{$1s^2\,2s^2\,2p^6\,3s^2\,3p^5$} \ \ أو \ \LTRfig{$[\mathrm{Ne}]\,3s^2\,3p^5$} \m{2}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{|c|>{\centering\arraybackslash}p{3.2cm}|>{\centering\arraybackslash}p{3.6cm}|>{\centering\arraybackslash}p{4.4cm}|}
+\hline
+\textbf{العنصر} & \textbf{رقم الدورة} & \textbf{رقم المجموعة} & \textbf{عدد الإلكترونات المنفردة} \\ \hline
+\en{\ce{_{32}Ge}} & 4 & 14 \ \en{(4A)} & 2 \ \en{($4p^2$)} \\ \hline
+\en{\ce{_{17}Cl}} & 3 & 17 \ \en{(7A)} & 1 \ \en{($3p^5$)} \\ \hline
+\end{tabular}
+\end{center}
+\vspace{-0.2cm}
+{\small (الفقرة 1: نصف علامة لكل خانة = علامتان، الفقرة 2: علامة لكل ذرة = علامتان)}
+
+\textbf{3)} الذرة الأكبر حجمًا: \ans{\en{\ce{Ge}}} ، لأن عدد مستويات الطاقة فيها أكبر (تقع في الدورة الرابعة، والكلور في الدورة الثالثة). \m{1}
+\par\vspace{0.1cm}
+\textbf{4)} \en{\ce{_{12}Mg^{2+}}} : \ans{\LTRfig{$1s^2\,2s^2\,2p^6$}} \ (فقدت الذرة إلكترونين، فبقي 10 إلكترونات) \m{1}
+
+% ============================ السؤال الرابع ============================
+\question{السؤال الرابع: المقارنة بين المركبات الأيونية والتساهمية}{5 علامات}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\bfseries}p{4.6cm}|>{\centering\arraybackslash}p{5.6cm}|>{\centering\arraybackslash}p{5.6cm}|}
+\hline
+وجه المقارنة & \textbf{المركبات الأيونية} & \textbf{المركبات التساهمية} \\ \hline
+درجات الانصهار والغليان & مرتفعة & منخفضة \\ \hline
+الذائبية في الماء & عالية (معظمها يذوب في الماء) & منخفضة (معظمها لا يذوب في الماء) \\ \hline
+التوصيل للكهرباء في حالة المحلول & موصلة (لوجود أيونات حرة الحركة) & غير موصلة (لا تحتوي أيونات) \\ \hline
+\end{tabular}
+\end{center}
+\vspace{-0.2cm}
+{\small (توزيع مقترح: علامتان لدرجات الانصهار والغليان، علامة ونصف للذائبية، علامة ونصف للتوصيل)}
+
+\vfill
+\noindent\textbf{مع دعائي لكنّ بالنجاح} \hfill \textbf{المعلمة: دينا الشرمان}
+
+\end{document}

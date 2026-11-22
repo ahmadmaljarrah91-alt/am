@@ -1,0 +1,222 @@
+% Works with pdfLaTeX, XeLaTeX or LuaLaTeX
+\documentclass[12pt, a4paper]{article}
+\usepackage[a4paper, top=1.2cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[safe]{tipa} % for the sound /ɪz/
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+\setlength{\parindent}{0pt}
+
+% Answer line across the full width
+\newcommand{\ansline}{\par\vspace{0.45cm}\noindent\rule{\linewidth}{0.4pt}\par}
+% Short blank to fill in
+\newcommand{\blank}[1][3cm]{\rule{#1}{0.4pt}}
+% Question heading with points on the right
+\newcommand{\question}[2]{\par\vspace{0.3cm}\noindent\textbf{\large #1}\hspace{0.4cm}\hfill\mbox{\textbf{(#2)}}\par\vspace{0.2cm}}
+% Bold choices in brackets, e.g. \opt{so / because}
+\newcommand{\opt}[1]{(\,\textbf{#1}\,)}
+
+\begin{document}
+
+% Page frame
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[line width=1.2pt] ([shift={(0.8cm,-0.8cm)}]current page.north west) rectangle ([shift={(-0.8cm,0.8cm)}]current page.south east);
+  \end{tikzpicture}%
+}
+
+% Header
+\noindent
+\begin{minipage}[t]{0.40\textwidth}
+\vspace{0pt}
+\textbf{The Hashemite Kingdom of Jordan} \\
+\textbf{Ministry of Education} \\
+\textbf{Inba Comprehensive Secondary} \\
+\textbf{School for Girls} \\
+\textbf{Subject: English Language}
+\end{minipage}%
+\begin{minipage}[t]{0.20\textwidth}
+\vspace{0pt}
+\centering
+\IfFileExists{logo.png}{\includegraphics[width=2.3cm]{logo.png}}{} % if logo.png is missing, the header just has no logo
+\end{minipage}%
+\begin{minipage}[t]{0.40\textwidth}
+\vspace{0pt}
+\hfill
+\begin{tabular}[t]{@{}l@{\hspace{0.3cm}}l@{}}
+\textbf{Grade:}   & \textbf{8th} \\
+\textbf{Section:} & \textbf{( \hspace{1.5cm} )} \\
+\textbf{Date:}    & \textbf{\hspace{0.5cm} / \hspace{0.5cm} / 202\hspace{0.3cm}} \\
+\textbf{Time:}    & \rule{2.6cm}{0.4pt}
+\end{tabular}
+\end{minipage}
+
+\vspace{0.3cm}
+\hrule height 1.2pt
+\vspace{0.08cm}
+\hrule height 0.4pt
+\vspace{0.3cm}
+
+\begin{center}
+\textbf{\Large First Semester 2025/2026 -- First Exam} \\[0.15cm]
+\textbf{\large English Language}
+\end{center}
+
+\vspace{0.1cm}
+\noindent\textbf{Name:} \rule{10cm}{0.5pt}
+
+% ------------------------------------------------------------------
+\question{Q1: Read the paragraph carefully, then answer the questions:}{6 Points}
+
+% The whole reading text and its questions are in bold
+\begingroup
+\fontfamily{phv}\fontseries{b}\selectfont % Q1 passage + questions: dark heavy bold (Helvetica Bold)
+\begin{center}
+\fbox{\parbox{0.96\linewidth}{%
+\vspace{0.15cm}
+\linespread{1.2}\selectfont
+{\large OSAMA}\par\vspace{0.1cm}
+Do people really think this is true? It's a really old and boring stereotype. I love doing all kinds of things: from playing football to reading books about history. My brother is only 13 and he's the same. When my parents put on the TV we usually want to watch the same things.
+
+\vspace{0.35cm}
+{\large MARIAM}\par\vspace{0.1cm}
+This isn't true! I play sports at school twice a week. I get up at eight on Saturdays and I play volleyball in a team. I usually cycle to school and when I go out, I hardly ever eat fast food. Of course, some teenagers stay in all the time and their only hobby is TV or computer games.
+\vspace{0.15cm}
+}}
+\end{center}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.25cm, leftmargin=*]
+\item What kinds of things does Osama enjoy doing?
+\ansline
+
+\item How often does Mariam play sports? \blank[6.5cm]
+
+\item How does Mariam usually go to school? \blank[6cm]
+
+\item Does Osama agree with the stereotype about teenagers?
+\ansline
+
+\item Find a phrasal verb in the text. \blank[6cm]
+
+\item Find out:
+\vspace{0.3cm}
+
+\noindent\begin{tabularx}{\linewidth}{@{}XXX@{}}
+A noun: \blank[2.6cm] & A pronoun: \blank[2.6cm] & A preposition: \blank[2.2cm] \\[0.45cm]
+A verb: \blank[2.6cm] & An adjective: \blank[2.2cm] & An adverb: \blank[2.6cm]
+\end{tabularx}
+\end{enumerate}
+\endgroup
+
+\newpage
+% ------------------------------------------------------------------
+\question{Q2: Complete the phrases with these words.}{5 Points}
+
+\begin{center}
+\fbox{\begin{tabular}{ccccc}
+\textbf{do} \hspace{0.6cm} & \textbf{get} \hspace{0.6cm} & \textbf{go} \hspace{0.6cm} & \textbf{go to} \hspace{0.6cm} & \textbf{have}
+\end{tabular}}
+\end{center}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.3cm, leftmargin=*]
+\item \blank\ school / work / bed
+\item \blank\ exercise / homework / housework
+\item \blank\ a shower / lessons / breakfast / lunch / dinner
+\item \blank\ home / out with friends / shopping
+\item \blank\ home / dressed / up
+\end{enumerate}
+
+\vspace{0.2cm}
+\hrule height 0.4pt
+
+% ------------------------------------------------------------------
+\question{Q3: Match verbs 1--5 with activities a--e.}{4 Points}
+
+\noindent\begin{tabularx}{\linewidth}{@{\hspace{0.6cm}}X X}
+\textbf{1.} \makebox[2.4cm][l]{hang out} \blank[1.5cm] & \textbf{a.} a blog \\[0.25cm]
+\textbf{2.} \makebox[2.4cm][l]{listen} \blank[1.5cm]   & \textbf{b.} to music \\[0.25cm]
+\textbf{3.} \makebox[2.4cm][l]{write} \blank[1.5cm]    & \textbf{c.} with friends \\[0.25cm]
+\textbf{4.} \makebox[2.4cm][l]{watch} \blank[1.5cm]    & \textbf{d.} computer games \\[0.25cm]
+\textbf{5.} \makebox[2.4cm][l]{play} \blank[1.5cm]     & \textbf{e.} TV or films
+\end{tabularx}
+
+\vspace{0.3cm}
+\hrule height 0.4pt
+
+% ------------------------------------------------------------------
+\question{Q4: Put the adverbs in the correct place.}{2 Points}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.3cm, leftmargin=*]
+\item Your phone is with you. \hfill (always)
+\ansline
+
+\item You check your phone when you wake up. \hfill (usually)
+\ansline
+\end{enumerate}
+
+\vspace{0.2cm}
+\hrule height 0.4pt
+
+% ------------------------------------------------------------------
+\question{Q5: Put the words in the correct order to make questions.}{3 Points}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.3cm, leftmargin=*]
+\item does / often / How / sport? / play / dad / your
+\ansline
+
+\item shopping? / often / do / you / go / How
+\ansline
+
+\item friends? / with / you / hang / out / do / your / Where
+\ansline
+\end{enumerate}
+
+\newpage
+% ------------------------------------------------------------------
+\question{Q6: Choose the correct answer:}{7 Points}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, itemsep=0.45cm, leftmargin=*]
+\item I \opt{hang out sometimes / sometimes hang out} with my cousins.
+\item I love \opt{watching / watch} videos on my phone!
+\item My sister doesn't agree \opt{for / with} me.
+\item It's Talal's graduation, \opt{so / because} I need to buy a present.
+\item She \opt{get up / gets up} at 7 a.m. on weekdays.
+\item My parents \opt{eat / eats} pizza on Mondays.
+\item We \opt{don't have / doesn't have} lessons on Saturdays.
+\item She \opt{tidys / tidies} her room once a week.
+\end{enumerate}
+
+\vspace{0.3cm}
+\hrule height 0.4pt
+
+% ------------------------------------------------------------------
+\question{Q7: Listen to the words, then write them in the correct column.}{3 Points}
+
+\begin{center}
+\fbox{\begin{tabular}{cccccc}
+\textbf{plays} \hspace{0.3cm} & \textbf{starts} \hspace{0.3cm} & \textbf{words} \hspace{0.3cm} & \textbf{events} \hspace{0.3cm} & \textbf{teaches} \hspace{0.3cm} & \textbf{languages}
+\end{tabular}}
+
+\vspace{0.4cm}
+\renewcommand{\arraystretch}{1.7}%
+\begin{tabular}{|p{4.5cm}|p{4.5cm}|p{4.5cm}|}
+\hline
+\centering \textbf{/s/} & \centering \textbf{/z/} & \centering\arraybackslash \textbf{/\textipa{Iz}/} \\ \hline
+ & & \\ \hline
+ & & \\ \hline
+\end{tabular}
+\end{center}
+
+\vfill
+\begin{center}
+\textbf{\large Best wishes} \\[0.3cm]
+\textbf{Rawan Alomari}
+\end{center}
+
+\end{document}

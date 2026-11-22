@@ -1,0 +1,189 @@
+% يجب الترجمة بمحرك LuaLaTeX  (Menu -> Compiler -> LuaLaTeX)
+% الإجابة النموذجية لاختبار الكيمياء - الصف التاسع
+\documentclass[12pt, a4paper]{article}
+\usepackage[a4paper, top=1.2cm, bottom=1.4cm, left=1.4cm, right=1.4cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{fontspec}
+\usepackage[bidi=basic]{babel}
+\babelprovide[main, import, onchar=ids fonts]{arabic}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Serif}
+\babelfont[arabic]{rm}{Amiri}
+\usepackage[version=4]{mhchem} % الصيغ والمعادلات الكيميائية
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+\setlength{\parindent}{0pt}
+\newcommand{\LTRfig}[1]{\mbox{\foreignlanguage{english}{#1}}}
+% نص إنجليزي (صيغ كيميائية) داخل سطر عربي
+\newcommand{\en}[1]{\foreignlanguage{english}{#1}}
+
+% عنوان سؤال داخل شريط رمادي مع العلامة على اليسار
+\newcommand{\question}[2]{%
+  \par\vspace{0.18cm}\noindent
+  \colorbox{gray!15}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\textbf{\large #1}\hfill\mbox{\textbf{(#2)}}}}%
+  \par\vspace{0.1cm}}
+% علامة الفقرة
+\newcommand{\m}[1]{\hfill\mbox{\textcolor{blue!60!black}{\textbf{[#1]}}}}
+% الإجابة داخل إطار
+\newcommand{\ans}[1]{{\setlength{\fboxsep}{1.5pt}\fbox{\textbf{#1}}}}
+
+\begin{document}
+
+% إطار الصفحات
+\AddToShipoutPictureBG{%
+  \LTRfig{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[line width=1.2pt] ([shift={(0.7cm,-0.7cm)}]current page.north west) rectangle ([shift={(-0.7cm,0.7cm)}]current page.south east);
+  \end{tikzpicture}}%
+}
+
+% ============================ الترويسة ============================
+\noindent
+\begin{minipage}[t]{0.37\textwidth}
+\vspace{0pt}
+\textbf{المملكة الأردنية الهاشمية} \\
+\textbf{وزارة التربية والتعليم} \\
+\textbf{مدرسة جحفية الشاملة للبنات} \\
+\textbf{العام الدراسي: 2025 / 2026}
+\end{minipage}%
+\begin{minipage}[t]{0.26\textwidth}
+\vspace{0pt}
+\centering
+\IfFileExists{logo.png}{\includegraphics[width=2.7cm]{logo.png}}{}
+\end{minipage}%
+\begin{minipage}[t]{0.37\textwidth}
+\vspace{0pt}
+\textbf{المبحث: الكيمياء} \\
+\textbf{الصف: التاسع} \\
+\textbf{العلامة الكلية: 40 علامة}
+\end{minipage}
+
+\vspace{0.2cm}
+\hrule height 1.2pt
+\vspace{0.06cm}
+\hrule height 0.4pt
+\vspace{0.1cm}
+
+\begin{center}
+\textbf{\LARGE الإجابة النموذجية لاختبار الكيمياء}
+\end{center}
+\vspace{-0.25cm}
+\noindent{\small الأرقام بين الأقواس المربعة \textcolor{blue!60!black}{\textbf{[ ]}} هي علامة كل فقرة. تُقبل الإجابات الصحيحة الأخرى المكافئة.}
+
+% ============================ السؤال الأول ============================
+\question{السؤال الأول: العناصر \en{\ce{_{18}Ar}} ، \en{\ce{_{35}Br}} ، \en{\ce{_{13}Al}} ، \en{\ce{_{19}K}}}{10 علامات}
+
+\begin{enumerate}[label=\textbf{\arabic*)}, itemsep=0.06cm, leftmargin=*]
+\item التوزيع الإلكتروني: \m{2: نصف علامة لكل عنصر}
+\par\vspace{0.1cm}
+\noindent\begin{tabularx}{\linewidth}{@{}XXXX@{}}
+\en{\ce{_{18}Ar}} : \ans{2 ، 8 ، 8} &
+\en{\ce{_{35}Br}} : \ans{2 ، 8 ، 18 ، 7} &
+\en{\ce{_{13}Al}} : \ans{2 ، 8 ، 3} &
+\en{\ce{_{19}K}} : \ans{2 ، 8 ، 8 ، 1}
+\end{tabularx}
+
+\item العنصر الذي يقع في المجموعة الثالثة: \ans{\en{\ce{Al}}} \ (لأن في مستواه الأخير 3 إلكترونات) \m{1}
+
+\item مجموعة العنصر \en{\ce{K}}: \ans{الفلزات القلوية} ، ويقع في \ans{المجموعة الأولى \en{(1A)}} \m{1}
+
+\item العنصر النبيل: \ans{\en{\ce{Ar}}} \ (مستواه الأخير ممتلئ بـ 8 إلكترونات) \m{1}
+
+\item العنصر \en{\ce{Br}} ينتمي إلى \ans{الدورة الرابعة} \ و \ans{المجموعة السابعة \en{(7A)}} \ (الهالوجينات) \m{1}
+
+\item التوزيع الإلكتروني للأيون \en{\ce{Al^{3+}}}: \ans{2 ، 8} \ (فقد 3 إلكترونات، فبقي 10 إلكترونات) \m{1}
+
+\item الأكبر حجمًا: \ans{\en{\ce{Al}}} ، لأن الحجم الذري يقل عبر الدورة من اليسار إلى اليمين بزيادة الشحنة الموجبة للنواة. \m{1}
+
+\item العنصر \en{\ce{Br}} من \ans{اللافلزات} \m{1}
+
+\item العنصر \en{\ce{Ar}} من \ans{العناصر الممثلة} \ (يقع في المجموعة الثامنة \en{8A}) \m{1}
+\end{enumerate}
+
+% ============================ السؤال الثاني ============================
+\question{السؤال الثاني: أكملي الفراغات الآتية}{10 علامات}
+
+\begin{enumerate}[label=\textbf{\arabic*-}, itemsep=0.04cm, leftmargin=*]
+\item يُعرّف الحمض بأنه: \ans{مادة تنتج أيونات الهيدروجين \en{\ce{H+}} عند ذوبانها في الماء.} \m{1}
+\item من الأمثلة على الحموض القوية: \ans{حمض الهيدروكلوريك \en{\ce{HCl}}} \ (أو \en{\ce{HNO3}} ، \en{\ce{H2SO4}}) \m{1}
+\item المادة التي يتغير لونها تبعًا لنوع المحلول: \ans{الكاشف} \ (مثل ورق تباع الشمس) \m{1}
+\item تُعرّف القواعد بأنها: \ans{مواد تنتج أيونات الهيدروكسيد \en{\ce{OH-}} عند ذوبانها في الماء.} \m{1}
+\item من الأمثلة على القواعد الضعيفة: \ans{الأمونيا \en{\ce{NH3}}} \m{1}
+\item من خصائص الحموض: \ans{طعمها حامض} \ (أو: تحوّل لون ورق تباع الشمس الأزرق إلى الأحمر، أو تتفاعل مع الفلزات النشطة وينطلق غاز \en{\ce{H2}}) \m{1}
+\item تُسمى المجموعة السابعة: \ans{الهالوجينات} \m{1} \par
+ومن استخدامات عناصرها في صناعة: \ans{المبيّضات ومواد التعقيم} \ (أو: معجون الأسنان، البلاستيك) \m{1}
+\item يُعرّف الملح بأنه: \ans{مركب أيوني ينتج من تفاعل الحمض مع القاعدة.} \m{1}
+\item توصل محاليل الحموض التيار الكهربائي بسبب: \ans{وجود أيونات حرة الحركة في المحلول.} \m{1}
+\end{enumerate}
+
+\newpage
+% ============================ السؤال الثالث ============================
+\question{السؤال الثالث: أكملي المعادلات الآتية}{8 علامات}
+
+{\small (علامتان لكل معادلة: علامة للنواتج الصحيحة، وعلامة لموازنة المعادلة)}
+\par\vspace{0.15cm}
+\noindent\begin{tabularx}{\linewidth}{@{}X@{\hspace{0.8cm}}X@{}}
+\textbf{1)} \LTRfig{\large\ce{Mg + 2HCl -> MgCl2 + H2 ^}} &
+\textbf{2)} \LTRfig{\large\ce{HCl + NaOH -> NaCl + H2O}} \\[0.45cm]
+\textbf{3)} \LTRfig{\large\ce{KOH ->[H2O] K+ + OH-}} &
+\textbf{4)} \LTRfig{\large\ce{HNO3 ->[H2O] H+ + NO3-}}
+\end{tabularx}
+\par\vspace{0.1cm}
+{\small المعادلة 2 تفاعل تعادل (حمض + قاعدة $\leftarrow$ ملح + ماء)، والمعادلتان 3 و4 تفكك قاعدة وحمض في الماء.}
+
+% ============================ السؤال الرابع ============================
+\question{السؤال الرابع: تصنيف المحاليل}{5 علامات}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\bfseries}c|*{5}{>{\centering\arraybackslash}p{2.1cm}|}}
+\hline
+المحلول & 1 & 2 & 3 & 4 & 5 \\ \hline
+قيمة \en{pH} & \en{pH = 1} & \en{pH = 7} & \en{pH = 4} & \en{pH = 12} & \en{pH = 3} \\ \hline
+التصنيف & \textbf{حمضي} & \textbf{متعادل} & \textbf{حمضي} & \textbf{قاعدي} & \textbf{حمضي} \\ \hline
+\end{tabular}
+\end{center}
+\vspace{-0.15cm}
+{\small (علامة لكل محلول. القاعدة: \en{pH < 7} حمضي ، \en{pH = 7} متعادل ، \en{pH > 7} قاعدي)}
+
+% ============================ السؤال الخامس ============================
+\question{السؤال الخامس}{7 علامات}
+
+\textbf{أ)} طرق الحصول على الأملاح في المختبر: \m{4: علامة لكل طريقة}
+\begin{enumerate}[label=\textbf{\arabic*-}, itemsep=0.12cm, leftmargin=*]
+\item تفاعل الحمض مع القاعدة (التعادل):
+\quad \LTRfig{\ce{HCl + NaOH -> NaCl + H2O}}
+\item تفاعل الحمض مع فلز نشط:
+\quad \LTRfig{\ce{Mg + 2HCl -> MgCl2 + H2}}
+\item تفاعل الحمض مع كربونات فلز:
+\quad \LTRfig{\ce{CaCO3 + 2HCl -> CaCl2 + H2O + CO2}}
+\item تفاعل الحمض مع أكسيد فلز:
+\quad \LTRfig{\ce{CuO + H2SO4 -> CuSO4 + H2O}}
+\end{enumerate}
+
+\textbf{ب)} أنواع الأملاح: \m{3: علامة لكل نوع}
+\par\vspace{0.15cm}
+\noindent\begin{tabularx}{\linewidth}{@{}XXX@{}}
+\textbf{1-} \ans{أملاح متعادلة} & \textbf{2-} \ans{أملاح حمضية} & \textbf{3-} \ans{أملاح قاعدية}
+\end{tabularx}
+
+% ============================ ملخص العلامات ============================
+\vspace{0.4cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|>{\bfseries}c|*{5}{>{\centering\arraybackslash}p{1.5cm}|}>{\centering\arraybackslash}p{1.6cm}|}
+\hline
+السؤال & الأول & الثاني & الثالث & الرابع & الخامس & المجموع \\ \hline
+العلامة & 10 & 10 & 8 & 5 & 7 & \textbf{40} \\ \hline
+\end{tabular}
+\end{center}
+
+\vfill
+\noindent\textbf{مع دعائي لكنّ بالنجاح} \hfill \textbf{المعلمة: دينا الشرمان}
+
+\end{document}
