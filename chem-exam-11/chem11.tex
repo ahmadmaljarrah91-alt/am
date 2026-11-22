@@ -1,0 +1,272 @@
+% يجب الترجمة بمحرك LuaLaTeX  (Menu -> Compiler -> LuaLaTeX)
+% اختبار الكيمياء (اختيار من متعدد)، ويليه الإجابة النموذجية في صفحة جديدة
+\documentclass[12pt, a4paper]{article}
+\usepackage[a4paper, top=1.2cm, bottom=1.4cm, left=1.4cm, right=1.4cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{fontspec}
+\usepackage[bidi=basic, layout=tabular]{babel}
+\babelprovide[main, import, onchar=ids fonts]{arabic}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Serif}
+\babelfont[arabic]{rm}{Amiri}
+\usepackage[version=4]{mhchem}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+
+\setlength{\parindent}{0pt}
+\newcommand{\LTRfig}[1]{\mbox{\foreignlanguage{english}{#1}}}
+\newcommand{\en}[1]{\foreignlanguage{english}{#1}}
+% صيغة أو معادلة كيميائية داخل سطر عربي
+\newcommand{\chem}[1]{\LTRfig{\ce{#1}}}
+
+% عنوان سؤال داخل شريط رمادي مع العلامة على اليسار
+\newcommand{\question}[2]{%
+  \par\vspace{0.2cm}\noindent
+  \colorbox{gray!15}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\textbf{\large #1}\hfill\mbox{\textbf{(#2)}}}}%
+  \par\vspace{0.12cm}}
+% أربعة خيارات في سطر واحد
+\newcommand{\opts}[4]{\par\vspace{0.04cm}\noindent
+  \begin{tabularx}{\linewidth}{@{\hspace{0.5cm}}XXXX@{}}أ) #1 & ب) #2 & جـ) #3 & د) #4\end{tabularx}}
+% خياران في كل سطر
+\newcommand{\optsTwo}[4]{\par\vspace{0.04cm}\noindent
+  \begin{tabularx}{\linewidth}{@{\hspace{0.5cm}}XX@{}}أ) #1 & ب) #2 \\[0.08cm] جـ) #3 & د) #4\end{tabularx}}
+% خيار في كل سطر
+\newcommand{\optsOne}[4]{\par\vspace{0.04cm}\noindent
+  \begin{tabularx}{\linewidth}{@{\hspace{0.5cm}}X@{}}أ) #1 \\ ب) #2 \\ جـ) #3 \\ د) #4\end{tabularx}}
+
+% الترويسة (تُستعمل للاختبار وللإجابة النموذجية)
+\newcommand{\header}[1]{%
+\noindent
+\begin{minipage}[t]{0.37\textwidth}
+\vspace{0pt}
+\textbf{المملكة الأردنية الهاشمية} \\
+\textbf{وزارة التربية والتعليم} \\
+\textbf{مدرسة جحفية الشاملة للبنات} \\
+\textbf{العام الدراسي: 2026 / 2027}
+\end{minipage}%
+\begin{minipage}[t]{0.26\textwidth}
+\vspace{0pt}
+\centering
+\IfFileExists{logo.png}{\includegraphics[width=2.7cm]{logo.png}}{}
+\end{minipage}%
+\begin{minipage}[t]{0.37\textwidth}
+\vspace{0pt}
+\textbf{المبحث: الكيمياء} \\
+\textbf{الصف: الحادي عشر} \\
+\textbf{الزمن:} \rule{2.5cm}{0.4pt} \\
+\textbf{العلامة الكلية: 20 علامة}
+\end{minipage}
+
+\vspace{0.2cm}
+\hrule height 1.2pt
+\vspace{0.06cm}
+\hrule height 0.4pt
+\vspace{0.1cm}
+
+\begin{center}
+\textbf{\LARGE #1}
+\end{center}
+\vspace{-0.25cm}}
+
+% منحنى توزيع الطاقة الحركية (الفقرة 3)
+\newcommand{\kecurve}{%
+\LTRfig{%
+\begin{tikzpicture}[xscale=0.62, yscale=0.95]
+  % T1 (درجة حرارة أعلى): منحنى منبسط، و T2 (أقل): منحنى مرتفع ضيق
+  \fill[gray!70] (5.2,0) -- plot[domain=5.2:8, samples=40] (\x, {6*\x/4*exp(-\x/2)}) -- (8,0) -- cycle;
+  \fill[gray!30] (5.2,0) -- plot[domain=5.2:8, samples=40] (\x, {6*\x*exp(-\x)}) -- (8,0) -- cycle;
+  \draw[thick] plot[domain=0:8, samples=80] (\x, {6*\x/4*exp(-\x/2)});
+  \draw[thick, gray] plot[domain=0:8, samples=80] (\x, {6*\x*exp(-\x)});
+  \draw[dashed] (5.2,0) -- (5.2,2.4);
+  \draw[->, thick] (0,0) -- (8.3,0);
+  \draw[->, thick] (0,0) -- (0,2.6);
+  \node[font=\small] at (1.35,2.35) {$T_2$};
+  \node[font=\small] at (3.1,1.3) {$T_1$};
+  \node[below, font=\small] at (4.1,0) {\foreignlanguage{arabic}{الطاقة الحركية}};
+  \node[rotate=90, font=\small] at (-0.35,1.25) {\foreignlanguage{arabic}{عدد الجزيئات}};
+\end{tikzpicture}}}
+
+\begin{document}
+
+% إطار الصفحات
+\AddToShipoutPictureBG{%
+  \LTRfig{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[line width=1.2pt] ([shift={(0.7cm,-0.7cm)}]current page.north west) rectangle ([shift={(-0.7cm,0.7cm)}]current page.south east);
+  \end{tikzpicture}}%
+}
+
+% ####################################################################
+% ############################ الاختبار ##############################
+% ####################################################################
+\header{اختبار مادة الكيمياء}
+
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+\vspace{0.15cm}
+\textbf{اسم الطالبة:} \rule{4.6cm}{0.4pt} \hfill
+\textbf{الشعبة:} \rule{1.8cm}{0.4pt} \hfill
+\textbf{التاريخ:} \rule{0.8cm}{0.4pt} / \rule{0.8cm}{0.4pt} / \LTRfig{202\rule{0.6cm}{0.4pt}} \hfill
+\textbf{العلامة:} \mbox{\rule{0.9cm}{0.4pt} / 20}
+\vspace{0.1cm}}}
+
+% ============================ السؤال الأول ============================
+\question{السؤال الأول: اختاري الإجابة الصحيحة لكل فقرة من الفقرات الآتية}{20 علامة}
+
+\begin{enumerate}[label=\textbf{\arabic*-}, itemsep=0.03cm, leftmargin=*]
+
+\item بالون مملوء بالغاز حجمه \en{30 L} عند درجة حرارة \en{40 °C} وضغط يساوي \en{1.5 atm}، فإن حجم البالون \en{(L)} في الظروف المعيارية يساوي:
+\opts{\en{307}}{\en{22.4}}{\en{39.25}}{\en{30.7}}
+
+\item السائل الذي له أقل طاقة تبخر مولية هو:
+\opts{\chem{CH3CH2CH3}}{\chem{CH3CH2CH2CH3}}{\chem{CH3COCH3}}{\chem{CH3CH2OH}}
+
+\item يبين المنحنى المجاور توزيع الطاقة الحركية على الجزيئات عند درجتي حرارة \en{$T_1$} و \en{$T_2$}. العبارة الصحيحة مما يأتي هي:
+\par\vspace{0.1cm}
+\noindent
+\begin{minipage}[t]{0.6\linewidth}
+\vspace{0pt}
+\begin{tabularx}{\linewidth}{@{\hspace{0.5cm}}X@{}}
+أ) درجة الحرارة \en{$T_2$} أكبر من \en{$T_1$}. \\
+ب) عدد الجزيئات التي تمتلك طاقة كافية للتبخر عند \en{$T_1$} أكبر منها عند \en{$T_2$}. \\
+جـ) بزيادة درجة الحرارة يقل الحد الأدنى من الطاقة اللازمة للتبخر. \\
+د) متوسط الطاقة الحركية للجزيئات عند \en{$T_2$} أقل منها عند \en{$T_1$}.
+\end{tabularx}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.37\linewidth}
+\vspace{0pt}\centering \kecurve
+\end{minipage}
+
+\item المادة الصلبة التي لها أعلى درجة انصهار:
+\opts{\chem{AlF3}}{\chem{SiF4}}{\chem{NH3}}{\chem{P4}}
+
+\item المادة الصلبة الجزيئية هي:
+\opts{\chem{Al}}{\chem{BaCl2}}{\chem{Si}}{\chem{P4}}
+
+\item الخصائص الآتية تزداد بزيادة تركيز مادة غير متطايرة في المحلول، ما عدا:
+\optsTwo{الضغط الأسموزي.}{الارتفاع في درجة الغليان.}{الضغط البخاري.}{الانخفاض في درجة التجمد.}
+
+\item حُضّر محلول مشبع من نترات البوتاسيوم \chem{KNO3} بإذابة \en{40 g} منه في \en{50 g} من الماء عند درجة حرارة \en{48 °C}، ثم بُرّد المحلول إلى \en{27 °C}، حيث ذائبية \chem{KNO3} عند هذه الدرجة تساوي \en{40 g/100 g H$_2$O}. فإن كتلة الملح المترسب \en{(g)} تساوي:
+\opts{\en{40}}{صفر}{\en{20}}{\en{10}}
+
+\item أحد الآتية يُعدّ محلولًا حقيقيًا:
+\opts{الحليب}{السكر في الماء}{الطباشير في الماء}{التراب في الماء}
+
+\item محلول مكوّن من \en{12.5 g} من مادة غير متطايرة مذابة في \en{170 g} من الماء، فأدّت إلى ارتفاع درجة غليان المحلول بمقدار \en{0.63 °C}
+\en{($K_b$ H$_2$O = 0.512 °C kg mol$^{-1}$)}. فإن الكتلة المولية للمادة المذابة \en{(g/mol)} تساوي:
+\opts{\en{88.5}}{\en{77.2}}{\en{59.5}}{\en{40.7}}
+
+\item في التفاعل الآتي: \quad \chem{4NH3_{(g)} + 5O2_{(g)} <=> 4NO_{(g)} + 6H2O_{(g)}}
+\par يؤدي سحب كمية من غاز \chem{NH3} من وعاء التفاعل إلى:
+\optsTwo{زيادة سرعة التفاعل الأمامي.}{زيادة إنتاج غاز \chem{NO}.}{إزاحة موضع الاتزان نحو اليمين.}{إزاحة موضع الاتزان نحو اليسار.}
+
+\item التفاعل الذي ينتج عنه كمية أكبر من النواتج عند زيادة الضغط المؤثِّر في وعاء التفاعل:
+\optsTwo{\chem{I2_{(g)} + Br2_{(g)} <=> 2IBr_{(g)}}}{\chem{2NH3_{(g)} <=> N2_{(g)} + 3H2_{(g)}}}{\chem{2NO_{(g)} + Br2_{(g)} <=> 2NOBr_{(g)}}}{\chem{CH4_{(g)} + H2O_{(g)} <=> CO_{(g)} + 3H2_{(g)}}}
+
+\item عند استعمال العامل المساعد في تفاعل إنتاج الأمونيا:
+\optsTwo{يزداد تركيز الأمونيا عند الاتزان.}{يقل تركيز الأمونيا عند الاتزان.}{لا يتغير تركيز الأمونيا عند الاتزان.}{يزداد الزمن اللازم للوصول إلى موضع الاتزان.}
+
+\item يتفكك غاز الفوسجين \chem{COCl2} وفق المعادلة: \quad \chem{COCl2_{(g)} <=> CO_{(g)} + Cl2_{(g)}}
+\par فإذا كانت تراكيز المواد عند الاتزان: \quad
+\LTRfig{$[\mathrm{CO}] = [\mathrm{Cl_2}] = 0.18\ \mathrm{M}$ \ , \ $[\mathrm{COCl_2}] = 0.75\ \mathrm{M}$} ،
+فإن ثابت الاتزان للتفاعل يساوي:
+\opts{\en{0.48}}{\en{0.032}}{\en{0.043}}{\en{2.34}}
+
+\item لم يستطع أرهينيوس تفسير السلوك الحمضي لـ:
+\opts{\chem{HCN}}{\chem{HClO}}{\chem{HI}}{\chem{NH4Cl}}
+
+\item في التفاعل الآتي: \quad \chem{HSO4^-_{(aq)} + HCO3^-_{(aq)} <=> SO4^{2-}_{(aq)} + H2CO3_{(aq)}}
+\par إذا علمت أن الاتزان ينزاح نحو تكوين المواد الناتجة، فإن الحمض الأقوى هو:
+\opts{\chem{HSO4^-}}{\chem{HCO3^-}}{\chem{H2O}}{\chem{H2CO3}}
+
+\item الحمض المرافق الناتج من تفاعل \chem{CH3COOH} مع \chem{(CH3)3N} هو:
+\opts{\chem{CH3COO^-}}{\chem{CH3COOH}}{\chem{(CH3)3NH^+}}{\chem{H3O^+}}
+
+\item أُذيب \en{0.8 g} من هيدروكسيد الصوديوم \chem{NaOH} في كمية من الماء حتى أصبح حجم المحلول \en{1 L}، ثم تفاعل \en{15 mL} منه تمامًا مع \en{20 mL} من حمض النتريك \chem{HNO3} مجهول التركيز، فإن تركيز الحمض \en{(M)} يساوي:
+\en{($M_r$ NaOH = 40 g/mol)}
+\opts{\en{0.1}}{\en{0.001}}{\en{0.02}}{\en{0.4}}
+
+\item محلول حمض الهيدروكلوريك \chem{HCl} بتركيز \en{0.2 M}، يتفاعل \en{200 mL} منه تمامًا مع محلول القاعدة القوية \en{(X)}. فإذا كانت الكتلة المولية للقاعدة تساوي \en{56 g/mol}، فإن كتلة القاعدة \en{(X)} بالغرام تساوي:
+\opts{\en{1.6}}{\en{3.56}}{\en{1.92}}{\en{2.24}}
+
+\item محلول القاعدة الضعيفة \chem{C5H5N} بتركيز \en{0.01 M}، فإن:
+\optsTwo{\en{pH = 12}}{\LTRfig{$[\mathrm{OH^-}] = 1\times10^{-2}\ \mathrm{M}$}}{\en{pOH < 2}}{\LTRfig{$[\mathrm{H_3O^+}] > 1\times10^{-12}\ \mathrm{M}$}}
+
+\item الملح الذي يُعدّ ذوبانه في الماء تميّهًا هو:
+\opts{\chem{KI}}{\chem{KBr}}{\chem{KF}}{\chem{KCl}}
+
+\end{enumerate}
+
+\vfill
+\begin{center}
+\textbf{\large انتهت الأسئلة \quad --- \quad بالتوفيق للجميع}
+\end{center}
+
+% ####################################################################
+% ######################## الإجابة النموذجية #########################
+% ####################################################################
+\newpage
+\header{الإجابة النموذجية لاختبار الكيمياء}
+\noindent{\small علامة واحدة لكل فقرة. الإجابة الصحيحة بخط عريض، ومعها الحل أو التعليل.}
+
+\question{السؤال الأول: الاختيار من متعدد}{20 علامة}
+
+\renewcommand{\arraystretch}{1.32}
+\noindent\begin{tabularx}{\linewidth}{|c|c|X|}
+\hline
+\textbf{الفقرة} & \textbf{الإجابة} & \textbf{الحل / التعليل} \\ \hline
+1 & \textbf{جـ} &
+\LTRfig{$V_2 = \dfrac{P_1 V_1 T_2}{P_2 T_1} = \dfrac{1.5 \times 30 \times 273}{1 \times 313} = 39.25\ \mathrm{L}$} \\ \hline
+2 & \textbf{أ} & البروبان \chem{CH3CH2CH3}: جزيء غير قطبي صغير، قوى التشتت بين جزيئاته هي الأضعف. \\ \hline
+3 & \textbf{ب} & المساحة المظللة تحت منحنى \en{$T_1$} أكبر، فعدد الجزيئات التي تمتلك طاقة كافية للتبخر عند \en{$T_1$} أكبر. \textbf{(انظري الملاحظة أسفل الجدول)} \\ \hline
+4 & \textbf{أ} & \chem{AlF3} مادة صلبة أيونية، والروابط الأيونية القوية ترفع درجة الانصهار. \\ \hline
+5 & \textbf{د} & \chem{P4} جزيئات ترتبط بقوى بين جزيئية (\chem{Al} فلزية، \chem{BaCl2} أيونية، \chem{Si} شبكية تساهمية). \\ \hline
+6 & \textbf{جـ} & الضغط البخاري يقل بزيادة تركيز المذاب غير المتطاير. \\ \hline
+7 & \textbf{جـ} & عند \en{27 °C} يذوب \en{20 g} فقط في \en{50 g} ماء، فيترسب \en{40 $-$ 20 = 20 g}. \\ \hline
+8 & \textbf{ب} & السكر في الماء محلول متجانس حقيقي (الحليب غروي، والطباشير والتراب معلّقات). \\ \hline
+9 & \textbf{جـ} &
+\LTRfig{$m = \dfrac{\Delta T_b}{K_b} = \dfrac{0.63}{0.512} = 1.23\ \mathrm{mol/kg}$ , \ $n = 1.23 \times 0.170 = 0.209\ \mathrm{mol}$} \newline
+\LTRfig{$M = \dfrac{12.5}{0.209} \approx 59.5\ \mathrm{g/mol}$} \\ \hline
+10 & \textbf{د} & نقص تركيز المادة المتفاعلة \chem{NH3} يزيح الاتزان نحو المتفاعلات (اليسار) حسب مبدأ لوتشاتلييه. \\ \hline
+11 & \textbf{جـ} & زيادة الضغط تزيح الاتزان نحو عدد مولات غاز أقل: في (جـ) \en{3} مولات $\leftarrow$ \en{2} مول. \\ \hline
+12 & \textbf{جـ} & العامل المساعد يسرّع الوصول إلى الاتزان ولا يغيّر تراكيز المواد عند الاتزان. \\ \hline
+13 & \textbf{جـ} &
+\LTRfig{$K_c = \dfrac{[\mathrm{CO}][\mathrm{Cl_2}]}{[\mathrm{COCl_2}]} = \dfrac{0.18 \times 0.18}{0.75} = 0.043$} \\ \hline
+14 & \textbf{د} & \chem{NH4Cl} لا ينتج أيونات \chem{H+} مباشرة عند ذوبانه، فلم يفسّر أرهينيوس سلوكه الحمضي. \\ \hline
+15 & \textbf{أ} & ينزاح الاتزان نحو الحمض الأضعف، فالحمض الأقوى في المتفاعلات: \chem{HSO4^-}. \\ \hline
+16 & \textbf{جـ} & القاعدة \chem{(CH3)3N} تستقبل بروتونًا فتصبح الحمض المرافق \chem{(CH3)3NH^+}. \\ \hline
+17 & \textbf{---} &
+\LTRfig{$[\mathrm{NaOH}] = \dfrac{0.8/40}{1} = 0.02\ \mathrm{M}$ , \ $M_{acid} = \dfrac{0.02 \times 15}{20} = 0.015\ \mathrm{M}$} \newline
+\textbf{(الإجابة غير موجودة في البدائل، انظري الملاحظة)} \\ \hline
+18 & \textbf{د} &
+\LTRfig{$n_{HCl} = 0.2 \times 0.200 = 0.04\ \mathrm{mol}$ , \ $m = 0.04 \times 56 = 2.24\ \mathrm{g}$} \\ \hline
+19 & \textbf{د} & القاعدة ضعيفة، فـ \LTRfig{$[\mathrm{OH^-}] < 0.01\ \mathrm{M}$} ومن ثم \LTRfig{$[\mathrm{H_3O^+}] > 1\times10^{-12}\ \mathrm{M}$}. \\ \hline
+20 & \textbf{جـ} & \chem{F^-} قاعدة مرافقة لحمض ضعيف \chem{HF}، فتتميّه وتُكسب المحلول صفة قاعدية. \\ \hline
+\end{tabularx}
+
+\vspace{0.3cm}
+\noindent\begin{minipage}{\linewidth}
+\textbf{مفتاح الإجابة السريع:}
+\par\vspace{0.1cm}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|*{10}{c|}}
+\hline
+1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+\textbf{جـ} & \textbf{أ} & \textbf{ب} & \textbf{أ} & \textbf{د} & \textbf{جـ} & \textbf{جـ} & \textbf{ب} & \textbf{جـ} & \textbf{د} \\ \hline \hline
+11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 \\ \hline
+\textbf{جـ} & \textbf{جـ} & \textbf{جـ} & \textbf{د} & \textbf{أ} & \textbf{جـ} & \textbf{---} & \textbf{د} & \textbf{د} & \textbf{جـ} \\ \hline
+\end{tabular}
+\end{center}
+\end{minipage}
+
+\vspace{0.2cm}
+\noindent\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\small
+\textbf{ملاحظات للمعلمة:}
+\par \textbf{الفقرة 3:} البديل (د) صحيح أيضًا، لأن \en{$T_2$} أقل من \en{$T_1$} فمتوسط الطاقة الحركية عند \en{$T_2$} أقل. يُقترح تعديل (د) إلى «أكبر منها» ليبقى للفقرة إجابة واحدة.
+\par \textbf{الفقرة 17:} الناتج الصحيح \en{0.015 M} وليس بين البدائل. يُقترح تغيير البديل (جـ) إلى \en{0.015}.}}
+
+\end{document}
